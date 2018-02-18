@@ -545,6 +545,7 @@
     <Compile Include="Assets\Scripts\RealTimeReader.cs" />
     <Compile Include="Assets\Scripts\SaveGesture.cs" />
     <Compile Include="Assets\Scripts\SendCurrentGesture.cs" />
+    <Compile Include="Assets\Scripts\Sword.cs" />
     <Compile Include="Assets\SphericalPosition.cs" />
   </ItemGroup>
   <ItemGroup>

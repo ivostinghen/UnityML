@@ -10,7 +10,8 @@ public class PowerController : MonoBehaviour
     public string currentGesture;
 
     public Transform rightPalm;
-    public GameObject shield;
+    public Sword sword;
+    string lastGesture;
     IEnumerator Start()
     {
         
@@ -18,16 +19,33 @@ public class PowerController : MonoBehaviour
         {
 
 
-            if (currentGesture.Equals("OPEN"))
+            if (currentGesture.Equals("CLOSE"))
             {
-                //print(result);
-                // SpawnFireBall(rightPalm);
-                shield.SetActive(false);
-            }
-            else if (currentGesture.Equals("CLOSE"))
-            {
+                if (lastGesture != "CLOSE")
+                {
+                    lastGesture = "CLOSE";
+                    if (sword) sword.Fall();
 
-                shield.SetActive(true);
+                }
+
+            }
+            else if (currentGesture.Equals("OPEN"))
+            {
+                if (lastGesture != "OPEN")
+                {
+                    lastGesture = "OPEN";
+                    if (sword) sword.Grab();
+                }
+
+            }
+            else if (currentGesture.Equals("THUMB_UP"))
+            {
+                if (lastGesture != "THUMB_UP")
+                {
+                    lastGesture = "THUMB_UP";
+                    if (sword) sword.TurnOn();
+                }
+
             }
 
             yield return new WaitForSeconds(.4F);

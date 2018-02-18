@@ -33,30 +33,40 @@ public class GetPythonPredict : MonoBehaviour {
             try
             {
                 result = File.ReadAllText(filePython);
-
+                
                 if (result.Substring(0, 4).Equals("OPEN"))
                 {
                     //print(result);
-                    textMesh.text = result;
+                    
                     powerController.currentGesture = result.Substring(0, 4);
-                  
+                    textMesh.text = result;
 
                 }
                 else if (result.Substring(0, 5).Equals("CLOSE"))
                 {
                     //print(result);
-                 
+
                     powerController.currentGesture = result.Substring(0, 5);
 
                     textMesh.text = result;
 
                 }
+                else if ((result.Substring(0, 8)).Equals("THUMB_UP"))  //'ok' string jump to another else on js.
+                {
+                  
+                    powerController.currentGesture = result.Substring(0, 8);
+
+                    textMesh.text = result;
+                   
+
+                }
+              
 
 
             }
             catch (Exception )
             {
-                Debug.Log("Erro ao ler arquivo. Possivelmente arquivo .txt sendo usado por 2 programas ao mesmo tempo.");
+                //Debug.Log("Erro ao ler arquivo. Possivelmente arquivo .txt sendo usado por 2 programas ao mesmo tempo.");
             }
            
             yield return new WaitForSeconds(.5F);

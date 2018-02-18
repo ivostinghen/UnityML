@@ -40,8 +40,8 @@ public class SaveGesture : MonoBehaviour
 
     void Awake()
     {
-        GameObject countTxt = Instantiate(Resources.Load("CountTxt") as GameObject);
-        beginRecordTxt  =  countTxt.GetComponentInChildren<Text>();
+        //GameObject countTxt = Instantiate(Resources.Load("CountTxt") as GameObject);
+        //beginRecordTxt  =  countTxt.GetComponentInChildren<Text>();
 
         rowDataTemp = new string[91];
 
@@ -154,11 +154,11 @@ public class SaveGesture : MonoBehaviour
     IEnumerator WaitForStart()
     {
         yield return new WaitForSeconds(.5F);
-        beginRecordTxt.text = "2";
+        //beginRecordTxt.text = "2";
         yield return new WaitForSeconds(.5F);
-        beginRecordTxt.text = "1";
+        //beginRecordTxt.text = "1";
         yield return new WaitForSeconds(.5F);
-        beginRecordTxt.enabled = false;
+        //beginRecordTxt.enabled = false;
         StartCoroutine(RecordHandPos());
     }
 

@@ -234,7 +234,7 @@ public class Lightsaber : MonoBehaviour {
         {
             // Debug.Log("Space was pressed");
 
-            ToggleLightsaberOnOff();
+            //ToggleLightsaberOnOff(toggle);
 
         }
 
@@ -293,15 +293,16 @@ public class Lightsaber : MonoBehaviour {
         }
     }
 
-    private void ToggleLightsaberOnOff()
+    public void ToggleLightsaberOnOff(bool toggle)
     {
-        if (saberActive)
+        if (toggle/*saberActive*/)
         {
-            LightsaberOff();
+            LightsaberOn();
         }
         else
         {
-            LightsaberOn();
+            LightsaberOff();
+
         }
 
     }

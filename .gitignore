@@ -1,0 +1,7 @@
+Library/metadata/*
+Library/UnityAssemblies/*
+Library/ShaderCache/*
+ProjectSettings/*
+Library/PlayerDataCache/*
+Temp/*
+Library/shadercompiler-UnityShaderCompiler.exe1.log
