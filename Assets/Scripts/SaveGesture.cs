@@ -229,7 +229,7 @@ public class SaveGesture : MonoBehaviour
     {
         #if UNITY_EDITOR
                 //return Application.dataPath + "/CSV/" + "Saved_data.csv";
-                return @"C:\Users\ivoal\Documents\GitHub\Machine-Learning-Gesture-Recognition\gestures\gesture"+gestureName+".txt";
+                return @"C:\Users\ivoal\github\PythonML\gestures\gesture" + gestureName+".txt";
 #elif UNITY_ANDROID
                     return Application.persistentDataPath+"Saved_data.csv";
 #elif UNITY_IPHONE

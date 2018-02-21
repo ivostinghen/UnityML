@@ -8,6 +8,9 @@ public class Sword : MonoBehaviour {
     public Transform rightHand;
     Rigidbody rb;
     bool grabbed;
+
+
+
     public void Awake()
     {
         rb = GetComponent<Rigidbody>();
@@ -28,24 +31,17 @@ public class Sword : MonoBehaviour {
 
             rb.useGravity = true;
         }
-        else
-        {
-            GetComponentInChildren<Lightsaber>().ToggleLightsaberOnOff(false);
-        }
+       
 
 
 
     }
 
-    public void TurnOn()
+    public void TurnOnOff()
     {
-        if (grabbed)
-        {
-            GetComponentInChildren<Lightsaber>().ToggleLightsaberOnOff(true);
-        }
-      
+        if(grabbed) GetComponentInChildren<Lightsaber>().ToggleLightsaberOnOff();
     }
-    
+
     public void Grab()
     {
         if (!grabbed)
@@ -67,10 +63,10 @@ public class Sword : MonoBehaviour {
         while ((dist = Vector3.Distance(transform.position, rightHand.position)) > .05F)
         {
 
-            transform.position = Vector3.MoveTowards(transform.position, rightHand.position, (Time.deltaTime * dist * .5f) +.2f);
+            transform.position = Vector3.MoveTowards(transform.position, rightHand.position, (Time.deltaTime * dist * .5f) +.1f);
             
             
-            yield return new WaitForSeconds(.02F);
+            yield return new WaitForSeconds(.01F);
 
         }
 

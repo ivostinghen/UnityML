@@ -1,7 +1,16 @@
 Library/metadata/*
-Library/UnityAssemblies/*
-Library/ShaderCache/*
-ProjectSettings/*
-Library/PlayerDataCache/*
+Temp/UnityLockfile
+Library/metadata/*
 Temp/*
-Library/shadercompiler-UnityShaderCompiler.exe1.log
+Library/PlayerDataCache/*
+Library/ShaderCache/*
+Assets/3D Assets/photo_2018-01-16_20-34-15.jpg.meta
+*.meta
+Library/ScriptAssemblies/*
+
+*.meta
+*.dll
+Library/ScriptAssemblies/*
+Library/CrashedAssetImports.txt
+Library/ScriptAssemblies/*
+Library/metadata/*

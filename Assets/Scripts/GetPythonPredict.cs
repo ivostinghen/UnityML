@@ -10,7 +10,7 @@ using System.Text.RegularExpressions;
 
 public class GetPythonPredict : MonoBehaviour {
 
-    string filePython = @"C:\Users\ivoal\Documents\GitHub\Machine-Learning-Gesture-Recognition\communication\python.txt";
+    string filePython = @"C:\Users\ivoal\github\PythonML\communication\python.txt";
 
     public TextMesh textMesh;
 
@@ -33,35 +33,12 @@ public class GetPythonPredict : MonoBehaviour {
             try
             {
                 result = File.ReadAllText(filePython);
-                
-                if (result.Substring(0, 4).Equals("OPEN"))
+                result = result.Trim();
+                if (result.Equals("ONE") || result.Equals("TWO") || result.Equals("THREE") || result.Equals("FOUR") || result.Equals("OPEN") || result.Equals("CLOSE") || result.Equals("THUMB_UP")  ) 
                 {
-                    //print(result);
-                    
-                    powerController.currentGesture = result.Substring(0, 4);
+                    powerController.currentGesture = result;
                     textMesh.text = result;
-
                 }
-                else if (result.Substring(0, 5).Equals("CLOSE"))
-                {
-                    //print(result);
-
-                    powerController.currentGesture = result.Substring(0, 5);
-
-                    textMesh.text = result;
-
-                }
-                else if ((result.Substring(0, 8)).Equals("THUMB_UP"))  //'ok' string jump to another else on js.
-                {
-                  
-                    powerController.currentGesture = result.Substring(0, 8);
-
-                    textMesh.text = result;
-                   
-
-                }
-              
-
 
             }
             catch (Exception )

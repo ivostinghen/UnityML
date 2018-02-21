@@ -12,6 +12,9 @@ public class PowerController : MonoBehaviour
     public Transform rightPalm;
     public Sword sword;
     string lastGesture;
+
+
+
     IEnumerator Start()
     {
         
@@ -43,7 +46,7 @@ public class PowerController : MonoBehaviour
                 if (lastGesture != "THUMB_UP")
                 {
                     lastGesture = "THUMB_UP";
-                    if (sword) sword.TurnOn();
+                    if (sword) sword.TurnOnOff();
                 }
 
             }

@@ -6,8 +6,8 @@ using UnityEngine;
 
 public class SendCurrentGesture : MonoBehaviour {
 
-	string fileUnity = @"C:\Users\ivoal\Documents\GitHub\Machine-Learning-Gesture-Recognition\communication\unity.txt";
-    string filePython = @"C:\Users\ivoal\Documents\GitHub\Machine-Learning-Gesture-Recognition\communication\python.txt";
+	string fileUnity = @"C:\Users\ivoal\github\PythonML\communication\unity.txt";
+    string filePython = @"C:\Users\ivoal\github\PythonML\communication\python.txt";
 
     public Transform rightHand;
     int cont = 0;

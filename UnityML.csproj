@@ -291,6 +291,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Assets\Enemy.cs" />
     <Compile Include="Assets\LeapMotion\Core\Scripts\Algorithms\SlidingMax.cs" />
     <Compile Include="Assets\LeapMotion\Core\Scripts\Algorithms\SmoothedFloat.cs" />
     <Compile Include="Assets\LeapMotion\Core\Scripts\Algorithms\SmoothedQuaternion.cs" />
@@ -542,7 +543,6 @@
     <Compile Include="Assets\Scripts\Movement\MoveRandomlyInCollider.cs" />
     <Compile Include="Assets\Scripts\PerlinShake.cs" />
     <Compile Include="Assets\Scripts\PowerController.cs" />
-    <Compile Include="Assets\Scripts\RealTimeReader.cs" />
     <Compile Include="Assets\Scripts\SaveGesture.cs" />
     <Compile Include="Assets\Scripts\SendCurrentGesture.cs" />
     <Compile Include="Assets\Scripts\Sword.cs" />

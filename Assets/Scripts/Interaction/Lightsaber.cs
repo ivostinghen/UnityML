@@ -230,13 +230,13 @@ public class Lightsaber : MonoBehaviour {
 	void Update () {
         
         // key pressed
-        if (Input.GetKeyDown(KeyCode.Space))
-        {
-            // Debug.Log("Space was pressed");
+        //if (Input.GetKeyDown(KeyCode.Space))
+        //{
+        //    // Debug.Log("Space was pressed");
 
-            //ToggleLightsaberOnOff(toggle);
+        //    ToggleLightsaberOnOff();
 
-        }
+        //}
 
         UpdateBlades();
 
@@ -293,9 +293,9 @@ public class Lightsaber : MonoBehaviour {
         }
     }
 
-    public void ToggleLightsaberOnOff(bool toggle)
+    public void ToggleLightsaberOnOff()
     {
-        if (toggle/*saberActive*/)
+        if (!saberActive)
         {
             LightsaberOn();
         }
