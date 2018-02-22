@@ -30,12 +30,13 @@ public class SendCurrentGesture : MonoBehaviour {
 
                 for (int finger = 0; finger < 5; finger++)  //5 fingers
                 {
-                    for (int bone = 0; bone < 3; bone++)
+                    //for (int bone = 0; bone < 3; bone++)
+                    int bone = 2;
                     {
                         for (int axis = 0; axis < 3; axis++)    //3 axis (X,y,z) position.
                         {
                             raw = raw + (rightHand.transform.GetChild(finger).GetChild(bone).position[axis]- rightPalm.transform.position[axis]) + ",";
-                            raw = raw + rightHand.transform.GetChild(finger).GetChild(bone).eulerAngles[axis] + ",";
+                            //raw = raw + rightHand.transform.GetChild(finger).GetChild(bone).eulerAngles[axis] + ",";
 
                             //y++;
                         }
