@@ -13,7 +13,7 @@ public class SendCurrentGesture : MonoBehaviour {
     int cont = 0;
     String line = "";
     String lastAcess = "";
-
+    public Transform rightPalm;
     
     IEnumerator Start ()
     {
@@ -34,7 +34,7 @@ public class SendCurrentGesture : MonoBehaviour {
                     {
                         for (int axis = 0; axis < 3; axis++)    //3 axis (X,y,z) position.
                         {
-                            raw = raw + rightHand.transform.GetChild(finger).GetChild(bone).position[axis] + ",";
+                            raw = raw + (rightHand.transform.GetChild(finger).GetChild(bone).position[axis]- rightPalm.transform.position[axis]) + ",";
                             raw = raw + rightHand.transform.GetChild(finger).GetChild(bone).eulerAngles[axis] + ",";
 
                             //y++;

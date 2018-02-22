@@ -2440,7 +2440,7 @@ MonoBehaviour:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 831046156}
-  m_Enabled: 0
+  m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 82d9926f91452b443a96586e0bf05501, type: 3}
   m_Name: 
@@ -2461,6 +2461,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   rightHand: {fileID: 992598497}
+  rightPalm: {fileID: 659219474}
 --- !u!114 &831046159
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3073,7 +3074,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &1364845446
 Transform:
   m_ObjectHideFlags: 0
@@ -5218,7 +5219,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 1121365935877148, guid: 229cd3b77a039cd4c9a2dcb830c1e5ad, type: 2}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 229cd3b77a039cd4c9a2dcb830c1e5ad, type: 2}
@@ -5251,9 +5252,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   rightHand: {fileID: 992598497}
-  gestureName: CLOSE
+  gestureName: THUMB
   recordRateTime: 0.05
   samples: 500
+  rightPalm: {fileID: 659219474}
 --- !u!4 &1867074666
 Transform:
   m_ObjectHideFlags: 0

@@ -22,6 +22,7 @@ public class SaveGesture : MonoBehaviour
     public int samples;
 
 
+    public Transform rightPalm;
 
     Text beginRecordTxt;
 
@@ -184,7 +185,7 @@ public class SaveGesture : MonoBehaviour
             {
                 for (int axis = 0; axis < 3; axis++)    //3 axis (X,y,z) position.
                 {
-                    rowDataTemp[y] = "" + rightHand.transform.GetChild(finger).GetChild(bone).position[axis] ;
+                    rowDataTemp[y] = "" + (rightHand.transform.GetChild(finger).GetChild(bone).position[axis] - rightPalm.transform.position[axis]) ;
                    
                     y++;
                     rowDataTemp[y] = "" + rightHand.transform.GetChild(finger).GetChild(bone).eulerAngles[axis] ;

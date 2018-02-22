@@ -34,7 +34,7 @@ public class GetPythonPredict : MonoBehaviour {
             {
                 result = File.ReadAllText(filePython);
                 result = result.Trim();
-                if (result.Equals("ONE") || result.Equals("TWO") || result.Equals("THREE") || result.Equals("FOUR") || result.Equals("OPEN") || result.Equals("CLOSE") || result.Equals("THUMB_UP")  ) 
+                if (result.Equals("ONE") || result.Equals("TWO") || result.Equals("THREE") || result.Equals("FOUR") || result.Equals("OPEN") || result.Equals("CLOSE") || result.Equals("THUMB")  ) 
                 {
                     powerController.currentGesture = result;
                     textMesh.text = result;

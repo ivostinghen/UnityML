@@ -41,11 +41,11 @@ public class PowerController : MonoBehaviour
                 }
 
             }
-            else if (currentGesture.Equals("THUMB_UP"))
+            else if (currentGesture.Equals("THUMB"))
             {
-                if (lastGesture != "THUMB_UP")
+                if (lastGesture != "THUMB")
                 {
-                    lastGesture = "THUMB_UP";
+                    lastGesture = "THUMB";
                     if (sword) sword.TurnOnOff();
                 }
 
