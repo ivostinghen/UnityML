@@ -6,14 +6,15 @@ using UnityEngine;
 
 public class SendCurrentGesture : MonoBehaviour {
 
-	string fileUnity = @"C:\Users\ivoal\github\PythonML\communication\unity.txt";
-    string filePython = @"C:\Users\ivoal\github\PythonML\communication\python.txt";
+	string fileUnity = @"C:\Users\ivoal\git\pythonML\communication\unity.txt";
+    string filePython = @"C:\Users\ivoal\git\pythonML\communication\python.txt";
 
-    public Transform rightHand;
+    public Transform rightHand,leftHand;
     int cont = 0;
     String line = "";
     String lastAcess = "";
     public Transform rightPalm;
+    
     
     IEnumerator Start ()
     {
@@ -27,21 +28,45 @@ public class SendCurrentGesture : MonoBehaviour {
 
                 //int y = 0;
                 string raw = "";
+                var ax = rightPalm.transform.position.x - rightHand.transform.GetChild(2).GetChild(2).position.x;
+                var ay = rightPalm.transform.position.z - rightHand.transform.GetChild(2).GetChild(2).position.y;
+                var az = (rightPalm.transform.position.y/* - 0.071F*/) - rightHand.transform.GetChild(2).GetChild(2).position.z;
+                float normalDist = Mathf.Sqrt((ax * ax) + (ay * ay) + (az * az));
 
+                //right hand position
                 for (int finger = 0; finger < 5; finger++)  //5 fingers
                 {
                     //for (int bone = 0; bone < 3; bone++)
                     int bone = 2;
                     {
+                        //raw = raw + "(";
                         for (int axis = 0; axis < 3; axis++)    //3 axis (X,y,z) position.
                         {
-                            raw = raw + (rightHand.transform.GetChild(finger).GetChild(bone).position[axis]- rightPalm.transform.position[axis]) + ",";
-                            //raw = raw + rightHand.transform.GetChild(finger).GetChild(bone).eulerAngles[axis] + ",";
+
+                            //if(axis==2)raw = raw + (rightHand.transform.GetChild(finger).GetChild(bone).position[axis] - rightPalm.transform.position[axis]) + "),";
+                            /*else */
+                            raw= raw + (rightHand.transform.GetChild(finger).GetChild(bone).position[axis] / normalDist + ",");
 
                             //y++;
                         }
+                        
                     }
                 }
+                ////left hand position
+                //for (int finger = 0; finger < 5; finger++)  //5 fingers
+                //{
+                //    //for (int bone = 0; bone < 3; bone++)
+                //    int bone = 2;
+                //    {
+                //        for (int axis = 0; axis < 3; axis++)    //3 axis (X,y,z) position.
+                //        {
+                //            raw = raw + (leftHand.transform.GetChild(finger).GetChild(bone).position[axis] - leftPalm.transform.position[axis]) + ",";
+                //            //raw = raw + rightHand.transform.GetChild(finger).GetChild(bone).eulerAngles[axis] + ",";
+
+                //            //y++;
+                //        }
+                //    }
+                //}
 
                 raw = raw.Substring(0, raw.Length - 1);
 

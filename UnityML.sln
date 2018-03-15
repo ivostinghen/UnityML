@@ -1,9 +1,9 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 2017
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "UnityML", "UnityML.csproj", "{1A799BD7-1C6D-3AF4-35CF-FF5C917327F0}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "unityML", "unityML.csproj", "{B14ABCD1-54DD-FE8A-2748-4922573EE5BC}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "UnityML.Editor", "UnityML.Editor.csproj", "{CC997359-E607-4F2B-6755-133AC4BF54CC}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "unityML.Editor", "unityML.Editor.csproj", "{114B6F60-C28B-5A7E-8632-84AF8CBAE07D}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -11,14 +11,14 @@ Global
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{1A799BD7-1C6D-3AF4-35CF-FF5C917327F0}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{1A799BD7-1C6D-3AF4-35CF-FF5C917327F0}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{1A799BD7-1C6D-3AF4-35CF-FF5C917327F0}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{1A799BD7-1C6D-3AF4-35CF-FF5C917327F0}.Release|Any CPU.Build.0 = Release|Any CPU
-		{CC997359-E607-4F2B-6755-133AC4BF54CC}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{CC997359-E607-4F2B-6755-133AC4BF54CC}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{CC997359-E607-4F2B-6755-133AC4BF54CC}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{CC997359-E607-4F2B-6755-133AC4BF54CC}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B14ABCD1-54DD-FE8A-2748-4922573EE5BC}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B14ABCD1-54DD-FE8A-2748-4922573EE5BC}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B14ABCD1-54DD-FE8A-2748-4922573EE5BC}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B14ABCD1-54DD-FE8A-2748-4922573EE5BC}.Release|Any CPU.Build.0 = Release|Any CPU
+		{114B6F60-C28B-5A7E-8632-84AF8CBAE07D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{114B6F60-C28B-5A7E-8632-84AF8CBAE07D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{114B6F60-C28B-5A7E-8632-84AF8CBAE07D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{114B6F60-C28B-5A7E-8632-84AF8CBAE07D}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

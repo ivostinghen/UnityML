@@ -10,7 +10,7 @@ using UnityEditor;
 
 public class SaveGesture : MonoBehaviour
 {
-    public Transform rightHand;
+    public Transform rightHand, leftHand;
     private List<string[]> rowData = new List<string[]>();
     public String gestureName;
     string[] rowDataTemp;
@@ -21,8 +21,9 @@ public class SaveGesture : MonoBehaviour
 
     public int samples;
 
+   
 
-    public Transform rightPalm;
+    public Transform rightPalm /*, leftPalm*/;
 
     Text beginRecordTxt;
 
@@ -46,44 +47,129 @@ public class SaveGesture : MonoBehaviour
 
         //rowDataTemp = new string[91];
         rowDataTemp = new string[16];
-
-
+        //rowDataTemp = new string[31];
 
         rowDataTemp[0] = "pTHUMB_BONE3_X";
-      
         rowDataTemp[1] = "pTHUMB_BONE3_Y";
         rowDataTemp[2] = "pTHUMB_BONE3_Z";
-   
 
         rowDataTemp[3] = "pINDEX_BONE3_X";
-      
         rowDataTemp[4] = "pINDEX_BONE3_Y";
-    
         rowDataTemp[5] = "pINDEX_BONE3_Z";
-     
-        rowDataTemp[6] = "pMIDDLE_BONE3_X";
-        
-        rowDataTemp[7] = "pMIDDLE_BONE3_Y";
-        
-        rowDataTemp[8] = "pMIDDLE_BONE3_Z";
-      
 
+        rowDataTemp[6] = "pMIDDLE_BONE3_X";
+        rowDataTemp[7] = "pMIDDLE_BONE3_Y";
+        rowDataTemp[8] = "pMIDDLE_BONE3_Z";
 
         rowDataTemp[9] = "pRING_BONE3_X";
-       
         rowDataTemp[10] = "pRING_BONE3_Y";
-     
         rowDataTemp[11] = "pRING_BONE3_Z";
-      
-
 
         rowDataTemp[12] = "pPINKY_BONE3_X";
-      
         rowDataTemp[13] = "pPINKY_BONE3_Y";
-      
         rowDataTemp[14] = "pPINKY_BONE3_Z";
-       
         rowDataTemp[15] = "target";
+        //rowDataTemp[0] = "(pTHUMB_BONE3_X";
+        //rowDataTemp[1] = "pTHUMB_BONE3_Y";
+        //rowDataTemp[2] = "pTHUMB_BONE3_Z)";
+
+        //rowDataTemp[3] = "(pINDEX_BONE3_X";
+        //rowDataTemp[4] = "pINDEX_BONE3_Y";
+        //rowDataTemp[5] = "pINDEX_BONE3_Z)";
+
+        //rowDataTemp[6] = "(pMIDDLE_BONE3_X";
+        //rowDataTemp[7] = "pMIDDLE_BONE3_Y";
+        //rowDataTemp[8] = "pMIDDLE_BONE3_Z)";
+
+        //rowDataTemp[9] = "(pRING_BONE3_X";
+        //rowDataTemp[10] = "pRING_BONE3_Y";
+        //rowDataTemp[11] = "pRING_BONE3_Z)";
+
+        //rowDataTemp[12] = "(pPINKY_BONE3_X";
+        //rowDataTemp[13] = "pPINKY_BONE3_Y";
+        //rowDataTemp[14] = "pPINKY_BONE3_Z)";
+        //rowDataTemp[15] = "target";
+
+
+
+
+        //rowDataTemp[0] = "pTHUMB_BONE3_X";
+
+        //rowDataTemp[1] = "pTHUMB_BONE3_Y";
+        //rowDataTemp[2] = "pTHUMB_BONE3_Z";
+
+
+        //rowDataTemp[3] = "pINDEX_BONE3_X";
+
+        //rowDataTemp[4] = "pINDEX_BONE3_Y";
+
+        //rowDataTemp[5] = "pINDEX_BONE3_Z";
+
+        //rowDataTemp[6] = "pMIDDLE_BONE3_X";
+
+        //rowDataTemp[7] = "pMIDDLE_BONE3_Y";
+
+        //rowDataTemp[8] = "pMIDDLE_BONE3_Z";
+
+
+
+        //rowDataTemp[9] = "pRING_BONE3_X";
+
+        //rowDataTemp[10] = "pRING_BONE3_Y";
+
+        //rowDataTemp[11] = "pRING_BONE3_Z";
+
+
+
+        //rowDataTemp[12] = "pPINKY_BONE3_X";
+
+        //rowDataTemp[13] = "pPINKY_BONE3_Y";
+
+        //rowDataTemp[14] = "pPINKY_BONE3_Z";
+
+
+
+        //rowDataTemp[15] = "right_pTHUMB_BONE3_X";
+
+        //rowDataTemp[16] = "right_pTHUMB_BONE3_Y";
+        //rowDataTemp[17] = "right_pTHUMB_BONE3_Z";
+
+
+        //rowDataTemp[18] = "right_pINDEX_BONE3_X";
+
+        //rowDataTemp[19] = "right_pINDEX_BONE3_Y";
+
+        //rowDataTemp[20] = "right_pINDEX_BONE3_Z";
+
+        //rowDataTemp[21] = "right_pMIDDLE_BONE3_X";
+
+        //rowDataTemp[22] = "right_pMIDDLE_BONE3_Y";
+
+        //rowDataTemp[23] = "right_pMIDDLE_BONE3_Z";
+
+
+
+        //rowDataTemp[24] = "right_pRING_BONE3_X";
+
+        //rowDataTemp[25] = "right_pRING_BONE3_Y";
+
+        //rowDataTemp[26] = "right_pRING_BONE3_Z";
+
+
+
+        //rowDataTemp[27] = "right_pPINKY_BONE3_X";
+
+        //rowDataTemp[28] = "right_pPINKY_BONE3_Y";
+
+        //rowDataTemp[29] = "right_pPINKY_BONE3_Z";
+
+        //rowDataTemp[30] = "target";
+
+
+
+
+
+
         //rowDataTemp[0] = "pTHUMB_BONE3_X";
         //rowDataTemp[1] = "rTHUMB_BONE3_X";
         //rowDataTemp[2] = "pTHUMB_BONE3_Y";
@@ -252,9 +338,19 @@ public class SaveGesture : MonoBehaviour
     }
 
     public void GetValues()
-    {  
+    {
+        //rowDataTemp = new string[31];
         rowDataTemp = new string[16];
         int y = 0;
+        //float normalDist = Vector3.Distance(rightPalm.transform.position, rightHand.transform.GetChild(2).GetChild(2).position); // dedo medio
+
+        //right hand
+        var ax = rightPalm.transform.position.x - rightHand.transform.GetChild(2).GetChild(2).position.x;
+        var ay = rightPalm.transform.position.z - rightHand.transform.GetChild(2).GetChild(2).position.y;
+        var az = (rightPalm.transform.position.y/* - 0.071F*/) - rightHand.transform.GetChild(2).GetChild(2).position.z;
+        float normalDist = Mathf.Sqrt((ax * ax) + (ay * ay) + (az * az)) ;
+
+
         for (int finger = 0; finger < 5; finger++)  //5 fingers
         {
             //for (int bone = 0; bone < 3; bone++)
@@ -262,16 +358,37 @@ public class SaveGesture : MonoBehaviour
             {
                 for (int axis = 0; axis < 3; axis++)    //3 axis (X,y,z) position.
                 {
-                    rowDataTemp[y] = "" + (rightHand.transform.GetChild(finger).GetChild(bone).position[axis] - rightPalm.transform.position[axis]) ;
-                   
+                    //if (axis==0) rowDataTemp[y] = "(" + (rightHand.transform.GetChild(finger).GetChild(bone).position[axis] / normalDist);
+                    //else if(axis==2) rowDataTemp[y] = "" + (rightHand.transform.GetChild(finger).GetChild(bone).position[axis-1] / normalDist + ")");
+                    ///*else*/ rowDataTemp[y] = "" + (rightHand.transform.GetChild(finger).GetChild(bone).position[axis+1]/ normalDist);
+                    /*else*/ rowDataTemp[y] = "" + (rightHand.transform.GetChild(finger).GetChild(bone).position[axis] / normalDist);
+
                     y++;
                     //rowDataTemp[y] = "" + rightHand.transform.GetChild(finger).GetChild(bone).eulerAngles[axis] ;
-                    
                     //y++;
+                    
                 }
-                
+               
+
             }
         }
+        ////left hand
+        //for (int finger = 0; finger < 5; finger++)  //5 fingers
+        //{
+        //    //for (int bone = 0; bone < 3; bone++)
+        //    int bone = 2;
+        //    {
+        //        for (int axis = 0; axis < 3; axis++)    //3 axis (X,y,z) position.
+        //        {
+        //            rowDataTemp[y] = "" + (leftHand.transform.GetChild(finger).GetChild(bone).position[axis] - leftPalm.transform.position[axis]);
+
+        //            y++;
+        //            //rowDataTemp[y] = "" + rightHand.transform.GetChild(finger).GetChild(bone).eulerAngles[axis] ;
+        //            //y++;
+        //        }
+
+        //    }
+        //}
 
 
         rowDataTemp[y] = "" + gestureName;
@@ -307,7 +424,7 @@ public class SaveGesture : MonoBehaviour
     {
         #if UNITY_EDITOR
                 //return Application.dataPath + "/CSV/" + "Saved_data.csv";
-                return @"C:\Users\ivoal\github\PythonML\gestures\gesture" + gestureName+".txt";
+                return @"C:\Users\ivoal\git\pythonML\gestures\gesture" + gestureName+".txt";
 #elif UNITY_ANDROID
                     return Application.persistentDataPath+"Saved_data.csv";
 #elif UNITY_IPHONE

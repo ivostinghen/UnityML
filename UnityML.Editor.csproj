@@ -5,7 +5,7 @@
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
     <ProductVersion>10.0.20506</ProductVersion>
     <SchemaVersion>2.0</SchemaVersion>
-    <ProjectGuid>{CC997359-E607-4F2B-6755-133AC4BF54CC}</ProjectGuid>
+    <ProjectGuid>{114B6F60-C28B-5A7E-8632-84AF8CBAE07D}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AssemblyName>Assembly-CSharp-Editor</AssemblyName>
     <FileAlignment>512</FileAlignment>
@@ -250,11 +250,20 @@
     <Reference Include="UnityEditor.VR">
       <HintPath>Library\UnityAssemblies\UnityEditor.VR.dll</HintPath>
     </Reference>
+    <Reference Include="Vuforia.UnityExtensions.Editor">
+      <HintPath>Library\UnityAssemblies\Vuforia.UnityExtensions.Editor.dll</HintPath>
+    </Reference>
+    <Reference Include="Vuforia.UnityExtensions">
+      <HintPath>Library\UnityAssemblies\Vuforia.UnityExtensions.dll</HintPath>
+    </Reference>
     <Reference Include="UnityEditor.Graphs">
       <HintPath>Library\UnityAssemblies\UnityEditor.Graphs.dll</HintPath>
     </Reference>
     <Reference Include="UnityEditor.Android.Extensions">
       <HintPath>Library\UnityAssemblies\UnityEditor.Android.Extensions.dll</HintPath>
+    </Reference>
+    <Reference Include="UnityEditor.WebGL.Extensions">
+      <HintPath>Library\UnityAssemblies\UnityEditor.WebGL.Extensions.dll</HintPath>
     </Reference>
     <Reference Include="UnityEditor.WindowsStandalone.Extensions">
       <HintPath>Library\UnityAssemblies\UnityEditor.WindowsStandalone.Extensions.dll</HintPath>
@@ -291,9 +300,9 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="UnityML.csproj">
-      <Project>{1A799BD7-1C6D-3AF4-35CF-FF5C917327F0}</Project>
-      <Name>UnityML</Name>
+    <ProjectReference Include="unityML.csproj">
+      <Project>{B14ABCD1-54DD-FE8A-2748-4922573EE5BC}</Project>
+      <Name>unityML</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>

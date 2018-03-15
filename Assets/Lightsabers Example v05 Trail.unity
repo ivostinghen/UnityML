@@ -195,7 +195,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!23 &16660623
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -2017,9 +2017,17 @@ Prefab:
       propertyPath: m_Layer
       value: 8
       objectReference: {fileID: 0}
+    - target: {fileID: 121614, guid: 23f2cce114628a448bfeaae171b4c0c0, type: 2}
+      propertyPath: m_Name
+      value: leftpalm
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 23f2cce114628a448bfeaae171b4c0c0, type: 2}
   m_IsPrefabParent: 0
+--- !u!4 &473986906 stripped
+Transform:
+  m_PrefabParentObject: {fileID: 428776, guid: 23f2cce114628a448bfeaae171b4c0c0, type: 2}
+  m_PrefabInternal: {fileID: 473986905}
 --- !u!1001 &539884643
 Prefab:
   m_ObjectHideFlags: 0
@@ -2545,7 +2553,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   rightHand: {fileID: 992598497}
+  leftHand: {fileID: 995349287}
   rightPalm: {fileID: 659219474}
+  leftPalm: {fileID: 473986906}
 --- !u!114 &831046159
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5329,7 +5339,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!114 &1867074665
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5342,10 +5352,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   rightHand: {fileID: 992598497}
-  gestureName: THUMB
+  leftHand: {fileID: 995349287}
+  gestureName: MEDITATION
   recordRateTime: 0.05
   samples: 500
   rightPalm: {fileID: 659219474}
+  leftPalm: {fileID: 473986906}
 --- !u!4 &1867074666
 Transform:
   m_ObjectHideFlags: 0
@@ -5539,7 +5551,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &2103576960
 Transform:
   m_ObjectHideFlags: 0

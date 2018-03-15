@@ -10,7 +10,7 @@ using System.Text.RegularExpressions;
 
 public class GetPythonPredict : MonoBehaviour {
 
-    string filePython = @"C:\Users\ivoal\github\PythonML\communication\python.txt";
+    string filePython = @"C:\Users\ivoal\git\pythonML\communication\python.txt";
 
     public TextMesh textMesh;
 
