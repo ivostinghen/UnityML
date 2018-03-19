@@ -50,6 +50,24 @@ public class PowerController : MonoBehaviour
                 }
 
             }
+             else if (currentGesture.Equals("GRAB"))
+            {
+                if (lastGesture != "GRAB")
+                {
+                    lastGesture = "GRAB";
+                    if (sword) sword.TurnOnOff();
+                }
+
+            }
+             else if (currentGesture.Equals("COOL"))
+            {
+                if (lastGesture != "COOL")
+                {
+                    lastGesture = "COOL";
+                    if (sword) sword.TurnOnOff();
+                }
+
+            }
 
             yield return new WaitForSeconds(.4F);
         }

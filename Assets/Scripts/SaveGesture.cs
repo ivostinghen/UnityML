@@ -11,9 +11,9 @@ using UnityEditor;
 public class SaveGesture : MonoBehaviour
 {
     public Transform rightHand, leftHand;
-    private List<string[]> rowData = new List<string[]>();
+    // private List<string[]> rowData = new List<string[]>();
     public String gestureName;
-    string[] rowDataTemp;
+    string rawDataTemp;
     //public float limitRecordTime;
     public float recordRateTime;
     
@@ -21,6 +21,7 @@ public class SaveGesture : MonoBehaviour
 
     public int samples;
 
+ float max;
    
 
     public Transform rightPalm /*, leftPalm*/;
@@ -45,267 +46,284 @@ public class SaveGesture : MonoBehaviour
         //GameObject countTxt = Instantiate(Resources.Load("CountTxt") as GameObject);
         //beginRecordTxt  =  countTxt.GetComponentInChildren<Text>();
 
-        //rowDataTemp = new string[91];
-        rowDataTemp = new string[16];
-        //rowDataTemp = new string[31];
+        //rawDataTemp = new string[91];
+        //rawDataTemp = new string[16];
+        // rawDataTemp = new string[20];
+        rawDataTemp = "";
+        //rawDataTemp = new string[31];
 
-        rowDataTemp[0] = "pTHUMB_BONE3_X";
-        rowDataTemp[1] = "pTHUMB_BONE3_Y";
-        rowDataTemp[2] = "pTHUMB_BONE3_Z";
+        // rawDataTemp[0] = "pTHUMB_BONE3_X";
+        // rawDataTemp[1] = "pTHUMB_BONE3_Y";
+        // rawDataTemp[2] = "pTHUMB_BONE3_Z";
 
-        rowDataTemp[3] = "pINDEX_BONE3_X";
-        rowDataTemp[4] = "pINDEX_BONE3_Y";
-        rowDataTemp[5] = "pINDEX_BONE3_Z";
+        // rawDataTemp[3] = "pINDEX_BONE3_X";
+        // rawDataTemp[4] = "pINDEX_BONE3_Y";
+        // rawDataTemp[5] = "pINDEX_BONE3_Z";
 
-        rowDataTemp[6] = "pMIDDLE_BONE3_X";
-        rowDataTemp[7] = "pMIDDLE_BONE3_Y";
-        rowDataTemp[8] = "pMIDDLE_BONE3_Z";
+        // rawDataTemp[6] = "pMIDDLE_BONE3_X";
+        // rawDataTemp[7] = "pMIDDLE_BONE3_Y";
+        // rawDataTemp[8] = "pMIDDLE_BONE3_Z";
 
-        rowDataTemp[9] = "pRING_BONE3_X";
-        rowDataTemp[10] = "pRING_BONE3_Y";
-        rowDataTemp[11] = "pRING_BONE3_Z";
+        // rawDataTemp[9] = "pRING_BONE3_X";
+        // rawDataTemp[10] = "pRING_BONE3_Y";
+        // rawDataTemp[11] = "pRING_BONE3_Z";
 
-        rowDataTemp[12] = "pPINKY_BONE3_X";
-        rowDataTemp[13] = "pPINKY_BONE3_Y";
-        rowDataTemp[14] = "pPINKY_BONE3_Z";
-        rowDataTemp[15] = "target";
-        //rowDataTemp[0] = "(pTHUMB_BONE3_X";
-        //rowDataTemp[1] = "pTHUMB_BONE3_Y";
-        //rowDataTemp[2] = "pTHUMB_BONE3_Z)";
+        // rawDataTemp[12] = "pPINKY_BONE3_X";
+        // rawDataTemp[13] = "pPINKY_BONE3_Y";
+        // rawDataTemp[14] = "pPINKY_BONE3_Z";
 
-        //rowDataTemp[3] = "(pINDEX_BONE3_X";
-        //rowDataTemp[4] = "pINDEX_BONE3_Y";
-        //rowDataTemp[5] = "pINDEX_BONE3_Z)";
 
-        //rowDataTemp[6] = "(pMIDDLE_BONE3_X";
-        //rowDataTemp[7] = "pMIDDLE_BONE3_Y";
-        //rowDataTemp[8] = "pMIDDLE_BONE3_Z)";
+        rawDataTemp = "THUMB_INDEX_ANGLE,THUMB_DIST,INDEX_MIDDLE_ANGLE,INDEX_DIST,MIDDLE_RING_ANGLE,MIDDLE_DIST,RING_PINKY_ANGLE,RING_DIST,PINKY_DIST,target";
 
-        //rowDataTemp[9] = "(pRING_BONE3_X";
-        //rowDataTemp[10] = "pRING_BONE3_Y";
-        //rowDataTemp[11] = "pRING_BONE3_Z)";
 
-        //rowDataTemp[12] = "(pPINKY_BONE3_X";
-        //rowDataTemp[13] = "pPINKY_BONE3_Y";
-        //rowDataTemp[14] = "pPINKY_BONE3_Z)";
-        //rowDataTemp[15] = "target";
+        string filePath = getPath();
 
+       
+        File.AppendAllText(filePath, 
+                   rawDataTemp + Environment.NewLine);
+       
+        rawDataTemp = "";
 
 
 
-        //rowDataTemp[0] = "pTHUMB_BONE3_X";
+        // rawDataTemp[9] = "target";
+        //rawDataTemp[0] = "(pTHUMB_BONE3_X";
+        //rawDataTemp[1] = "pTHUMB_BONE3_Y";
+        //rawDataTemp[2] = "pTHUMB_BONE3_Z)";
 
-        //rowDataTemp[1] = "pTHUMB_BONE3_Y";
-        //rowDataTemp[2] = "pTHUMB_BONE3_Z";
+        //rawDataTemp[3] = "(pINDEX_BONE3_X";
+        //rawDataTemp[4] = "pINDEX_BONE3_Y";
+        //rawDataTemp[5] = "pINDEX_BONE3_Z)";
 
+        //rawDataTemp[6] = "(pMIDDLE_BONE3_X";
+        //rawDataTemp[7] = "pMIDDLE_BONE3_Y";
+        //rawDataTemp[8] = "pMIDDLE_BONE3_Z)";
 
-        //rowDataTemp[3] = "pINDEX_BONE3_X";
+        //rawDataTemp[9] = "(pRING_BONE3_X";
+        //rawDataTemp[10] = "pRING_BONE3_Y";
+        //rawDataTemp[11] = "pRING_BONE3_Z)";
 
-        //rowDataTemp[4] = "pINDEX_BONE3_Y";
+        //rawDataTemp[12] = "(pPINKY_BONE3_X";
+        //rawDataTemp[13] = "pPINKY_BONE3_Y";
+        //rawDataTemp[14] = "pPINKY_BONE3_Z)";
+        //rawDataTemp[15] = "target";
 
-        //rowDataTemp[5] = "pINDEX_BONE3_Z";
 
-        //rowDataTemp[6] = "pMIDDLE_BONE3_X";
 
-        //rowDataTemp[7] = "pMIDDLE_BONE3_Y";
 
-        //rowDataTemp[8] = "pMIDDLE_BONE3_Z";
+        //rawDataTemp[0] = "pTHUMB_BONE3_X";
 
+        //rawDataTemp[1] = "pTHUMB_BONE3_Y";
+        //rawDataTemp[2] = "pTHUMB_BONE3_Z";
 
 
-        //rowDataTemp[9] = "pRING_BONE3_X";
+        //rawDataTemp[3] = "pINDEX_BONE3_X";
 
-        //rowDataTemp[10] = "pRING_BONE3_Y";
+        //rawDataTemp[4] = "pINDEX_BONE3_Y";
 
-        //rowDataTemp[11] = "pRING_BONE3_Z";
+        //rawDataTemp[5] = "pINDEX_BONE3_Z";
 
+        //rawDataTemp[6] = "pMIDDLE_BONE3_X";
 
+        //rawDataTemp[7] = "pMIDDLE_BONE3_Y";
 
-        //rowDataTemp[12] = "pPINKY_BONE3_X";
+        //rawDataTemp[8] = "pMIDDLE_BONE3_Z";
 
-        //rowDataTemp[13] = "pPINKY_BONE3_Y";
 
-        //rowDataTemp[14] = "pPINKY_BONE3_Z";
 
+        //rawDataTemp[9] = "pRING_BONE3_X";
 
+        //rawDataTemp[10] = "pRING_BONE3_Y";
 
-        //rowDataTemp[15] = "right_pTHUMB_BONE3_X";
+        //rawDataTemp[11] = "pRING_BONE3_Z";
 
-        //rowDataTemp[16] = "right_pTHUMB_BONE3_Y";
-        //rowDataTemp[17] = "right_pTHUMB_BONE3_Z";
 
 
-        //rowDataTemp[18] = "right_pINDEX_BONE3_X";
+        //rawDataTemp[12] = "pPINKY_BONE3_X";
 
-        //rowDataTemp[19] = "right_pINDEX_BONE3_Y";
+        //rawDataTemp[13] = "pPINKY_BONE3_Y";
 
-        //rowDataTemp[20] = "right_pINDEX_BONE3_Z";
+        //rawDataTemp[14] = "pPINKY_BONE3_Z";
 
-        //rowDataTemp[21] = "right_pMIDDLE_BONE3_X";
 
-        //rowDataTemp[22] = "right_pMIDDLE_BONE3_Y";
 
-        //rowDataTemp[23] = "right_pMIDDLE_BONE3_Z";
+        //rawDataTemp[15] = "right_pTHUMB_BONE3_X";
 
+        //rawDataTemp[16] = "right_pTHUMB_BONE3_Y";
+        //rawDataTemp[17] = "right_pTHUMB_BONE3_Z";
 
 
-        //rowDataTemp[24] = "right_pRING_BONE3_X";
+        //rawDataTemp[18] = "right_pINDEX_BONE3_X";
 
-        //rowDataTemp[25] = "right_pRING_BONE3_Y";
+        //rawDataTemp[19] = "right_pINDEX_BONE3_Y";
 
-        //rowDataTemp[26] = "right_pRING_BONE3_Z";
-
-
-
-        //rowDataTemp[27] = "right_pPINKY_BONE3_X";
-
-        //rowDataTemp[28] = "right_pPINKY_BONE3_Y";
-
-        //rowDataTemp[29] = "right_pPINKY_BONE3_Z";
-
-        //rowDataTemp[30] = "target";
-
-
-
-
-
-
-        //rowDataTemp[0] = "pTHUMB_BONE3_X";
-        //rowDataTemp[1] = "rTHUMB_BONE3_X";
-        //rowDataTemp[2] = "pTHUMB_BONE3_Y";
-        //rowDataTemp[3] = "rTHUMB_BONE3_Y";
-        //rowDataTemp[4] = "pTHUMB_BONE3_Z";
-        //rowDataTemp[5] = "rTHUMB_BONE3_Z";
-
-        //rowDataTemp[6] = "pINDEX_BONE3_X";
-        //rowDataTemp[7] = "rINDEX_BONE3_X";
-        //rowDataTemp[8] = "pINDEX_BONE3_Y";
-        //rowDataTemp[9] = "rINDEX_BONE3_Y";
-        //rowDataTemp[10] = "pINDEX_BONE3_Z";
-        //rowDataTemp[11] = "rINDEX_BONE3_Z";
-
-        //rowDataTemp[12] = "pMIDDLE_BONE3_X";
-        //rowDataTemp[13] = "rMIDDLE_BONE3_X";
-        //rowDataTemp[14] = "pMIDDLE_BONE3_Y";
-        //rowDataTemp[15] = "rMIDDLE_BONE3_Y";
-        //rowDataTemp[16] = "pMIDDLE_BONE3_Z";
-        //rowDataTemp[17] = "rMIDDLE_BONE3_Z";
-
-
-        //rowDataTemp[18] = "pRING_BONE3_X";
-        //rowDataTemp[19] = "rRING_BONE3_X";
-        //rowDataTemp[20] = "pRING_BONE3_Y";
-        //rowDataTemp[21] = "rRING_BONE3_Y";
-        //rowDataTemp[22] = "pRING_BONE3_Z";
-        //rowDataTemp[23] = "rRING_BONE3_Z";
-
-
-        //rowDataTemp[24] = "pPINKY_BONE3_X";
-        //rowDataTemp[25] = "rPINKY_BONE3_X";
-        //rowDataTemp[26] = "pPINKY_BONE3_Y";
-        //rowDataTemp[27] = "rPINKY_BONE3_Y";
-        //rowDataTemp[28] = "pPINKY_BONE3_Z";
-        //rowDataTemp[29] = "rPINKY_BONE3_Z";
-        //rowDataTemp[30] = "target";
-
-
-        //rowDataTemp[0] = "pTHUMB_BONE1_X";
-        //rowDataTemp[1] = "rTHUMB_BONE1_X";
-        //rowDataTemp[2] = "pTHUMB_BONE1_Y";
-        //rowDataTemp[3] = "rTHUMB_BONE1_Y";
-        //rowDataTemp[4] = "pTHUMB_BONE1_Z";
-        //rowDataTemp[5] = "rTHUMB_BONE1_Z";
-        //rowDataTemp[6] = "pTHUMB_BONE2_X";
-        //rowDataTemp[7] = "rTHUMB_BONE2_X";
-        //rowDataTemp[8] = "pTHUMB_BONE2_Y";
-        //rowDataTemp[9] = "rTHUMB_BONE2_Y";
-        //rowDataTemp[10] = "pTHUMB_BONE2_Z";
-        //rowDataTemp[11] = "rTHUMB_BONE2_Z";
-        //rowDataTemp[12] = "pTHUMB_BONE3_X";
-        //rowDataTemp[13] = "rTHUMB_BONE3_X";
-        //rowDataTemp[14] = "pTHUMB_BONE3_Y";
-        //rowDataTemp[15] = "rTHUMB_BONE3_Y";
-        //rowDataTemp[16] = "pTHUMB_BONE3_Z";
-        //rowDataTemp[17] = "rTHUMB_BONE3_Z";
-
-        //rowDataTemp[18] = "pINDEX_BONE1_X";
-        //rowDataTemp[19] = "rINDEX_BONE1_X";
-        //rowDataTemp[20] = "pINDEX_BONE1_Y";
-        //rowDataTemp[21] = "rINDEX_BONE1_Y";
-        //rowDataTemp[22] = "pINDEX_BONE1_Z";
-        //rowDataTemp[23] = "rINDEX_BONE1_Z";
-        //rowDataTemp[24] = "pINDEX_BONE2_X";
-        //rowDataTemp[25] = "rINDEX_BONE2_X";
-        //rowDataTemp[26] = "pINDEX_BONE2_Y";
-        //rowDataTemp[27] = "rINDEX_BONE2_Y";
-        //rowDataTemp[28] = "pINDEX_BONE2_Z";
-        //rowDataTemp[29] = "rINDEX_BONE2_Z";
-        //rowDataTemp[30] = "pINDEX_BONE3_X";
-        //rowDataTemp[31] = "rINDEX_BONE3_X";
-        //rowDataTemp[32] = "pINDEX_BONE3_Y";
-        //rowDataTemp[33] = "rINDEX_BONE3_Y";
-        //rowDataTemp[34] = "pINDEX_BONE3_Z";
-        //rowDataTemp[35] = "rINDEX_BONE3_Z";
-
-        //rowDataTemp[36] = "pMIDDLE_BONE1_X";
-        //rowDataTemp[37] = "rMIDDLE_BONE1_X";
-        //rowDataTemp[38] = "pMIDDLE_BONE1_Y";
-        //rowDataTemp[39] = "rMIDDLE_BONE1_Y";
-        //rowDataTemp[40] = "pMIDDLE_BONE1_Z";
-        //rowDataTemp[41] = "rMIDDLE_BONE1_Z";
-        //rowDataTemp[42] = "pMIDDLE_BONE2_X";
-        //rowDataTemp[43] = "rMIDDLE_BONE2_X";
-        //rowDataTemp[44] = "pMIDDLE_BONE2_Y";
-        //rowDataTemp[45] = "rMIDDLE_BONE2_Y";
-        //rowDataTemp[46] = "pMIDDLE_BONE2_Z";
-        //rowDataTemp[47] = "rMIDDLE_BONE2_Z";
-        //rowDataTemp[48] = "pMIDDLE_BONE3_X";
-        //rowDataTemp[49] = "rMIDDLE_BONE3_X";
-        //rowDataTemp[50] = "pMIDDLE_BONE3_Y";
-        //rowDataTemp[51] = "rMIDDLE_BONE3_Y";
-        //rowDataTemp[52] = "pMIDDLE_BONE3_Z";
-        //rowDataTemp[53] = "rMIDDLE_BONE3_Z";
-
-        //rowDataTemp[54] = "pRING_BONE1_X";
-        //rowDataTemp[55] = "rRING_BONE1_X";
-        //rowDataTemp[56] = "pRING_BONE1_Y";
-        //rowDataTemp[57] = "rRING_BONE1_Y";
-        //rowDataTemp[58] = "pRING_BONE1_Z";
-        //rowDataTemp[59] = "rRING_BONE1_Z";
-        //rowDataTemp[60] = "pRING_BONE2_X";
-        //rowDataTemp[61] = "rRING_BONE2_X";
-        //rowDataTemp[62] = "pRING_BONE2_Y";
-        //rowDataTemp[63] = "rRING_BONE2_Y";
-        //rowDataTemp[64] = "pRING_BONE2_Z";
-        //rowDataTemp[65] = "rRING_BONE2_Z";
-        //rowDataTemp[66] = "pRING_BONE3_X";
-        //rowDataTemp[67] = "rRING_BONE3_X";
-        //rowDataTemp[68] = "pRING_BONE3_Y";
-        //rowDataTemp[69] = "rRING_BONE3_Y";
-        //rowDataTemp[70] = "pRING_BONE3_Z";
-        //rowDataTemp[71] = "rRING_BONE3_Z";
-
-        //rowDataTemp[72] = "pPINKY_BONE1_X";
-        //rowDataTemp[73] = "rPINKY_BONE1_X";
-        //rowDataTemp[74] = "pPINKY_BONE1_Y";
-        //rowDataTemp[75] = "rPINKY_BONE1_Y";
-        //rowDataTemp[76] = "pPINKY_BONE1_Z";
-        //rowDataTemp[77] = "rPINKY_BONE1_Z";
-        //rowDataTemp[78] = "pPINKY_BONE2_X";
-        //rowDataTemp[79] = "rPINKY_BONE2_X";
-        //rowDataTemp[80] = "pPINKY_BONE2_Y";
-        //rowDataTemp[81] = "rPINKY_BONE2_Y";
-        //rowDataTemp[82] = "pPINKY_BONE2_Z";
-        //rowDataTemp[83] = "rPINKY_BONE2_Z";
-        //rowDataTemp[84] = "pPINKY_BONE3_X";
-        //rowDataTemp[85] = "rPINKY_BONE3_X";
-        //rowDataTemp[86] = "pPINKY_BONE3_Y";
-        //rowDataTemp[87] = "rPINKY_BONE3_Y";
-        //rowDataTemp[88] = "pPINKY_BONE3_Z";
-        //rowDataTemp[89] = "rPINKY_BONE3_Z";
-        //rowDataTemp[90] = "target";
-
-        rowData.Add(rowDataTemp);
+        //rawDataTemp[20] = "right_pINDEX_BONE3_Z";
+
+        //rawDataTemp[21] = "right_pMIDDLE_BONE3_X";
+
+        //rawDataTemp[22] = "right_pMIDDLE_BONE3_Y";
+
+        //rawDataTemp[23] = "right_pMIDDLE_BONE3_Z";
+
+
+
+        //rawDataTemp[24] = "right_pRING_BONE3_X";
+
+        //rawDataTemp[25] = "right_pRING_BONE3_Y";
+
+        //rawDataTemp[26] = "right_pRING_BONE3_Z";
+
+
+
+        //rawDataTemp[27] = "right_pPINKY_BONE3_X";
+
+        //rawDataTemp[28] = "right_pPINKY_BONE3_Y";
+
+        //rawDataTemp[29] = "right_pPINKY_BONE3_Z";
+
+        //rawDataTemp[30] = "target";
+
+
+
+
+
+
+        //rawDataTemp[0] = "pTHUMB_BONE3_X";
+        //rawDataTemp[1] = "rTHUMB_BONE3_X";
+        //rawDataTemp[2] = "pTHUMB_BONE3_Y";
+        //rawDataTemp[3] = "rTHUMB_BONE3_Y";
+        //rawDataTemp[4] = "pTHUMB_BONE3_Z";
+        //rawDataTemp[5] = "rTHUMB_BONE3_Z";
+
+        //rawDataTemp[6] = "pINDEX_BONE3_X";
+        //rawDataTemp[7] = "rINDEX_BONE3_X";
+        //rawDataTemp[8] = "pINDEX_BONE3_Y";
+        //rawDataTemp[9] = "rINDEX_BONE3_Y";
+        //rawDataTemp[10] = "pINDEX_BONE3_Z";
+        //rawDataTemp[11] = "rINDEX_BONE3_Z";
+
+        //rawDataTemp[12] = "pMIDDLE_BONE3_X";
+        //rawDataTemp[13] = "rMIDDLE_BONE3_X";
+        //rawDataTemp[14] = "pMIDDLE_BONE3_Y";
+        //rawDataTemp[15] = "rMIDDLE_BONE3_Y";
+        //rawDataTemp[16] = "pMIDDLE_BONE3_Z";
+        //rawDataTemp[17] = "rMIDDLE_BONE3_Z";
+
+
+        //rawDataTemp[18] = "pRING_BONE3_X";
+        //rawDataTemp[19] = "rRING_BONE3_X";
+        //rawDataTemp[20] = "pRING_BONE3_Y";
+        //rawDataTemp[21] = "rRING_BONE3_Y";
+        //rawDataTemp[22] = "pRING_BONE3_Z";
+        //rawDataTemp[23] = "rRING_BONE3_Z";
+
+
+        //rawDataTemp[24] = "pPINKY_BONE3_X";
+        //rawDataTemp[25] = "rPINKY_BONE3_X";
+        //rawDataTemp[26] = "pPINKY_BONE3_Y";
+        //rawDataTemp[27] = "rPINKY_BONE3_Y";
+        //rawDataTemp[28] = "pPINKY_BONE3_Z";
+        //rawDataTemp[29] = "rPINKY_BONE3_Z";
+        //rawDataTemp[30] = "target";
+
+
+        //rawDataTemp[0] = "pTHUMB_BONE1_X";
+        //rawDataTemp[1] = "rTHUMB_BONE1_X";
+        //rawDataTemp[2] = "pTHUMB_BONE1_Y";
+        //rawDataTemp[3] = "rTHUMB_BONE1_Y";
+        //rawDataTemp[4] = "pTHUMB_BONE1_Z";
+        //rawDataTemp[5] = "rTHUMB_BONE1_Z";
+        //rawDataTemp[6] = "pTHUMB_BONE2_X";
+        //rawDataTemp[7] = "rTHUMB_BONE2_X";
+        //rawDataTemp[8] = "pTHUMB_BONE2_Y";
+        //rawDataTemp[9] = "rTHUMB_BONE2_Y";
+        //rawDataTemp[10] = "pTHUMB_BONE2_Z";
+        //rawDataTemp[11] = "rTHUMB_BONE2_Z";
+        //rawDataTemp[12] = "pTHUMB_BONE3_X";
+        //rawDataTemp[13] = "rTHUMB_BONE3_X";
+        //rawDataTemp[14] = "pTHUMB_BONE3_Y";
+        //rawDataTemp[15] = "rTHUMB_BONE3_Y";
+        //rawDataTemp[16] = "pTHUMB_BONE3_Z";
+        //rawDataTemp[17] = "rTHUMB_BONE3_Z";
+
+        //rawDataTemp[18] = "pINDEX_BONE1_X";
+        //rawDataTemp[19] = "rINDEX_BONE1_X";
+        //rawDataTemp[20] = "pINDEX_BONE1_Y";
+        //rawDataTemp[21] = "rINDEX_BONE1_Y";
+        //rawDataTemp[22] = "pINDEX_BONE1_Z";
+        //rawDataTemp[23] = "rINDEX_BONE1_Z";
+        //rawDataTemp[24] = "pINDEX_BONE2_X";
+        //rawDataTemp[25] = "rINDEX_BONE2_X";
+        //rawDataTemp[26] = "pINDEX_BONE2_Y";
+        //rawDataTemp[27] = "rINDEX_BONE2_Y";
+        //rawDataTemp[28] = "pINDEX_BONE2_Z";
+        //rawDataTemp[29] = "rINDEX_BONE2_Z";
+        //rawDataTemp[30] = "pINDEX_BONE3_X";
+        //rawDataTemp[31] = "rINDEX_BONE3_X";
+        //rawDataTemp[32] = "pINDEX_BONE3_Y";
+        //rawDataTemp[33] = "rINDEX_BONE3_Y";
+        //rawDataTemp[34] = "pINDEX_BONE3_Z";
+        //rawDataTemp[35] = "rINDEX_BONE3_Z";
+
+        //rawDataTemp[36] = "pMIDDLE_BONE1_X";
+        //rawDataTemp[37] = "rMIDDLE_BONE1_X";
+        //rawDataTemp[38] = "pMIDDLE_BONE1_Y";
+        //rawDataTemp[39] = "rMIDDLE_BONE1_Y";
+        //rawDataTemp[40] = "pMIDDLE_BONE1_Z";
+        //rawDataTemp[41] = "rMIDDLE_BONE1_Z";
+        //rawDataTemp[42] = "pMIDDLE_BONE2_X";
+        //rawDataTemp[43] = "rMIDDLE_BONE2_X";
+        //rawDataTemp[44] = "pMIDDLE_BONE2_Y";
+        //rawDataTemp[45] = "rMIDDLE_BONE2_Y";
+        //rawDataTemp[46] = "pMIDDLE_BONE2_Z";
+        //rawDataTemp[47] = "rMIDDLE_BONE2_Z";
+        //rawDataTemp[48] = "pMIDDLE_BONE3_X";
+        //rawDataTemp[49] = "rMIDDLE_BONE3_X";
+        //rawDataTemp[50] = "pMIDDLE_BONE3_Y";
+        //rawDataTemp[51] = "rMIDDLE_BONE3_Y";
+        //rawDataTemp[52] = "pMIDDLE_BONE3_Z";
+        //rawDataTemp[53] = "rMIDDLE_BONE3_Z";
+
+        //rawDataTemp[54] = "pRING_BONE1_X";
+        //rawDataTemp[55] = "rRING_BONE1_X";
+        //rawDataTemp[56] = "pRING_BONE1_Y";
+        //rawDataTemp[57] = "rRING_BONE1_Y";
+        //rawDataTemp[58] = "pRING_BONE1_Z";
+        //rawDataTemp[59] = "rRING_BONE1_Z";
+        //rawDataTemp[60] = "pRING_BONE2_X";
+        //rawDataTemp[61] = "rRING_BONE2_X";
+        //rawDataTemp[62] = "pRING_BONE2_Y";
+        //rawDataTemp[63] = "rRING_BONE2_Y";
+        //rawDataTemp[64] = "pRING_BONE2_Z";
+        //rawDataTemp[65] = "rRING_BONE2_Z";
+        //rawDataTemp[66] = "pRING_BONE3_X";
+        //rawDataTemp[67] = "rRING_BONE3_X";
+        //rawDataTemp[68] = "pRING_BONE3_Y";
+        //rawDataTemp[69] = "rRING_BONE3_Y";
+        //rawDataTemp[70] = "pRING_BONE3_Z";
+        //rawDataTemp[71] = "rRING_BONE3_Z";
+
+        //rawDataTemp[72] = "pPINKY_BONE1_X";
+        //rawDataTemp[73] = "rPINKY_BONE1_X";
+        //rawDataTemp[74] = "pPINKY_BONE1_Y";
+        //rawDataTemp[75] = "rPINKY_BONE1_Y";
+        //rawDataTemp[76] = "pPINKY_BONE1_Z";
+        //rawDataTemp[77] = "rPINKY_BONE1_Z";
+        //rawDataTemp[78] = "pPINKY_BONE2_X";
+        //rawDataTemp[79] = "rPINKY_BONE2_X";
+        //rawDataTemp[80] = "pPINKY_BONE2_Y";
+        //rawDataTemp[81] = "rPINKY_BONE2_Y";
+        //rawDataTemp[82] = "pPINKY_BONE2_Z";
+        //rawDataTemp[83] = "rPINKY_BONE2_Z";
+        //rawDataTemp[84] = "pPINKY_BONE3_X";
+        //rawDataTemp[85] = "rPINKY_BONE3_X";
+        //rawDataTemp[86] = "pPINKY_BONE3_Y";
+        //rawDataTemp[87] = "rPINKY_BONE3_Y";
+        //rawDataTemp[88] = "pPINKY_BONE3_Z";
+        //rawDataTemp[89] = "rPINKY_BONE3_Z";
+        //rawDataTemp[90] = "target";
+
+        // rowData.Add(rawDataTemp);
     }
 
     private void Start()
@@ -339,39 +357,92 @@ public class SaveGesture : MonoBehaviour
 
     public void GetValues()
     {
-        //rowDataTemp = new string[31];
-        rowDataTemp = new string[16];
+        //rawDataTemp = new string[31];
+        // rawDataTemp = new string[16];
+        // rawDataTemp = new string[20]; //15positions + 4 angles + class(target)
+        // rawDataTemp = new string[10];
         int y = 0;
-        //float normalDist = Vector3.Distance(rightPalm.transform.position, rightHand.transform.GetChild(2).GetChild(2).position); // dedo medio
 
+        //ALREADY TESTED
+        //////// float normalDist = Vector3.Distance(rightPalm.transform.position, rightHand.transform.GetChild(2).GetChild(2).position); // dedo medio
+        float normalDist = 0.1257631F; // the maximum distance betwween middle finger and the hand middle point.
+        ////////
+        
         //right hand
-        var ax = rightPalm.transform.position.x - rightHand.transform.GetChild(2).GetChild(2).position.x;
-        var ay = rightPalm.transform.position.z - rightHand.transform.GetChild(2).GetChild(2).position.y;
-        var az = (rightPalm.transform.position.y/* - 0.071F*/) - rightHand.transform.GetChild(2).GetChild(2).position.z;
-        float normalDist = Mathf.Sqrt((ax * ax) + (ay * ay) + (az * az)) ;
+        //var ax = rightHand.transform.GetChild(2).GetChild(2).position.x - rightPalm.transform.position.x ;
+        //var ay = rightHand.transform.GetChild(2).GetChild(2).position.y - rightPalm.transform.position.y ; // z and y has a fake impression that are inverted on leap motion, but is only in editor, or local position, global is fine
+        //var az = rightHand.transform.GetChild(2).GetChild(2).position.z - (rightPalm.transform.position.z/* - 0.071F*/)  ;
+        //float normalDist = Mathf.Sqrt((ax * ax) + (ay * ay) + (az * az)) ;
+       
+        //Debug.Log((rightHand.transform.GetChild(2).GetChild(2).position.y - rightPalm.transform.position.y) / normalDist);
+        // for (int finger = 0; finger < 5; finger++)  //5 fingers
+        // {
+        //     //for (int bone = 0; bone < 3; bone++)
+        //     int bone = 2;
+        //     {
+        //         for (int axis = 0; axis < 3; axis++)    //3 axis (X,y,z) position.
+        //         {
+        //             //if (axis==0) rawDataTemp[y] = "(" + (rightHand.transform.GetChild(finger).GetChild(bone).position[axis] / normalDist);
+        //             //else if(axis==2) rawDataTemp[y] = "" + (rightHand.transform.GetChild(finger).GetChild(bone).position[axis-1] / normalDist + ")");
+        //             ///*else*/ rawDataTemp[y] = "" + (rightHand.transform.GetChild(finger).GetChild(bone).position[axis+1]/ normalDist);
+        //             /*else*/ rawDataTemp[y] = "" + ((rightHand.transform.GetChild(finger).GetChild(bone).position[axis] - rightPalm.transform.position[axis]) / normalDist);
+        //             y++;
+        //             //rawDataTemp[y] = "" + rightHand.transform.GetChild(finger).GetChild(bone).eulerAngles[axis] ;
+        //             //y++;   
+        //         }
+        //     }
+        // }
 
+        //add rotation normalized
 
-        for (int finger = 0; finger < 5; finger++)  //5 fingers
+        //c^2 = a^2 + b^2 – 2·a·b·cosα
+
+        for (int finger = 0; finger < 4; finger++)  //5 fingers
         {
-            //for (int bone = 0; bone < 3; bone++)
+          
             int bone = 2;
             {
-                for (int axis = 0; axis < 3; axis++)    //3 axis (X,y,z) position.
-                {
-                    //if (axis==0) rowDataTemp[y] = "(" + (rightHand.transform.GetChild(finger).GetChild(bone).position[axis] / normalDist);
-                    //else if(axis==2) rowDataTemp[y] = "" + (rightHand.transform.GetChild(finger).GetChild(bone).position[axis-1] / normalDist + ")");
-                    ///*else*/ rowDataTemp[y] = "" + (rightHand.transform.GetChild(finger).GetChild(bone).position[axis+1]/ normalDist);
-                    /*else*/ rowDataTemp[y] = "" + (rightHand.transform.GetChild(finger).GetChild(bone).position[axis] / normalDist);
 
-                    y++;
-                    //rowDataTemp[y] = "" + rightHand.transform.GetChild(finger).GetChild(bone).eulerAngles[axis] ;
-                    //y++;
-                    
-                }
+                float c = Vector3.Distance(rightHand.transform.GetChild(finger).GetChild(2).transform.position, rightHand.transform.GetChild(finger + 1).GetChild(2).transform.position);
+                float a = Vector3.Distance(rightHand.transform.GetChild(finger+1).GetChild(2).transform.position, rightPalm.transform.position);
+                float b = Vector3.Distance(rightHand.transform.GetChild(finger).GetChild(2).transform.position, rightPalm.transform.position);
+
+                
+
+
+
+
+                float cosTheta= 0;
                
 
+                cosTheta = ((a * a) + (b * b) - (c*c)) / (2 * a * b);
+
+                float theta = Mathf.Acos(cosTheta);
+
+                if(finger==0)  Debug.Log("theta  " + theta);
+
+              
+
+                rawDataTemp = rawDataTemp  + theta + ",";
+
+                rawDataTemp = rawDataTemp  + b + ",";
+
+                if(finger==3){
+                    rawDataTemp = rawDataTemp  + a + ",";
+                }
+
+
+                y++;
+                 
             }
         }
+
+
+
+
+
+
+
         ////left hand
         //for (int finger = 0; finger < 5; finger++)  //5 fingers
         //{
@@ -380,10 +451,10 @@ public class SaveGesture : MonoBehaviour
         //    {
         //        for (int axis = 0; axis < 3; axis++)    //3 axis (X,y,z) position.
         //        {
-        //            rowDataTemp[y] = "" + (leftHand.transform.GetChild(finger).GetChild(bone).position[axis] - leftPalm.transform.position[axis]);
+        //            rawDataTemp[y] = "" + (leftHand.transform.GetChild(finger).GetChild(bone).position[axis] - leftPalm.transform.position[axis]);
 
         //            y++;
-        //            //rowDataTemp[y] = "" + rightHand.transform.GetChild(finger).GetChild(bone).eulerAngles[axis] ;
+        //            //rawDataTemp[y] = "" + rightHand.transform.GetChild(finger).GetChild(bone).eulerAngles[axis] ;
         //            //y++;
         //        }
 
@@ -391,30 +462,36 @@ public class SaveGesture : MonoBehaviour
         //}
 
 
-        rowDataTemp[y] = "" + gestureName;
-        rowData.Add(rowDataTemp);
+        rawDataTemp= rawDataTemp + gestureName;
+        // rowData.Add(rawDataTemp);
 
-        string[][] output = new string[rowData.Count][];
+        // string[][] output = new string[rowData.Count][];
 
-        for (int i = 0; i < output.Length; i++)
-        {
-            output[i] = rowData[i];
-        }
+        // for (int i = 0; i < output.Length; i++)
+        // {
+        //     output[i] = rowData[i];
+        // }
 
-        int length = output.GetLength(0);
-        string delimiter = "," ;
+        // int length = output.GetLength(0);
+        // string delimiter = "," ;
 
-        StringBuilder sb = new StringBuilder();
+        // StringBuilder sb = new StringBuilder();
 
-        for (int index = 0; index < length; index++)
-            sb.AppendLine(string.Join(delimiter, output[index]));
+        // for (int index = 0; index < length; index++)
+        //     sb.AppendLine(string.Join(delimiter, output[index]));
 
 
         string filePath = getPath();
 
-        StreamWriter outStream = System.IO.File.CreateText(filePath);
-        outStream.WriteLine(sb);
-        outStream.Close();
+        // StreamWriter outStream = System.IO.File.CreateText(filePath);
+        // File.AppendAllText(filePath, rawDataTemp);
+        File.AppendAllText(filePath, 
+                   rawDataTemp + Environment.NewLine);
+        // outStream.WriteLine(sb);
+        // outStream.WriteLine("\n");
+        // outStream.WriteLine(rawDataTemp);
+        rawDataTemp = "";
+        // outStream.Close();
 
 
     }
