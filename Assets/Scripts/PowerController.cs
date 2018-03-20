@@ -13,7 +13,48 @@ public class PowerController : MonoBehaviour
     public Sword sword;
     string lastGesture;
 
+    string stateMachine = "";
 
+    public GameObject enemy;
+    public GameObject thunderPower, flamesPower;
+
+    Coroutine curPower;
+
+    IEnumerator ActivateThunder(){
+    	Debug.Log("*** THUNDER POWER  ***");
+
+    	Camera.main.GetComponent<PerlinShake>().test = true;
+    	thunderPower.SetActive(true);
+    	enemy.GetComponent<Rigidbody>().isKinematic = false;
+    	enemy.GetComponent<Rigidbody>().AddForce(Vector3.forward * 10000);
+
+    	// while(currentGesture.Equals("LOVEJUTSU"))
+    	{
+			yield return new WaitForSeconds(.3F);
+
+    	}
+    	
+    	thunderPower.SetActive(false);
+    	curPower = null;
+    }
+
+     IEnumerator ActivateFlames(){
+    	Debug.Log("*** Flames POWER  ***");
+
+    	// Camera.main.GetComponent<PerlinShake>().test = true;
+    	flamesPower.SetActive(true);
+    	// enemy.GetComponent<Rigidbody>().isKinematic = false;
+    	// enemy.GetComponent<Rigidbody>().AddForce(Vector3.forward * 10000);
+
+    	while(currentGesture.Equals("COOL"))
+    	{
+			yield return new WaitForSeconds(.3F);
+
+    	}
+    	
+    	flamesPower.SetActive(false);
+    	curPower = null;
+    }
 
     IEnumerator Start()
     {
@@ -21,55 +62,69 @@ public class PowerController : MonoBehaviour
         while (true)
         {
 
+        	Debug.Log(stateMachine + "			" + currentGesture);
+        	if(stateMachine.Equals("TWOJUTSU") && currentGesture.Equals("LOVEJUTSU")){
+        			Debug.Log("AAAAAAAAAAA");
+        		if(curPower==null)curPower=StartCoroutine(ActivateThunder());
 
-            if (currentGesture.Equals("CLOSE"))
-            {
-                if (lastGesture != "CLOSE")
-                {
-                    lastGesture = "CLOSE";
-                    if (sword) sword.Fall();
+        	}
+        	else if(stateMachine.Equals("FOURJUTSU") && currentGesture.Equals("COOL")){
 
-                }
+        		if(curPower==null)curPower=StartCoroutine(ActivateFlames());
 
-            }
-            else if (currentGesture.Equals("OPEN"))
-            {
-                if (lastGesture != "OPEN")
-                {
-                    lastGesture = "OPEN";
-                    if (sword) sword.Grab();
-                }
+        	}
 
-            }
-            else if (currentGesture.Equals("THUMB"))
-            {
-                if (lastGesture != "THUMB")
-                {
-                    lastGesture = "THUMB";
-                    if (sword) sword.TurnOnOff();
-                }
+            // if (currentGesture.Equals("CLOSE"))
+            // {
+            //     if (lastGesture != "CLOSE")
+            //     {
+            //         lastGesture = "CLOSE";
+            //         if (sword) sword.Fall();
 
-            }
-             else if (currentGesture.Equals("GRAB"))
-            {
-                if (lastGesture != "GRAB")
-                {
-                    lastGesture = "GRAB";
-                    if (sword) sword.TurnOnOff();
-                }
+            //     }
 
-            }
-             else if (currentGesture.Equals("COOL"))
-            {
-                if (lastGesture != "COOL")
-                {
-                    lastGesture = "COOL";
-                    if (sword) sword.TurnOnOff();
-                }
+            // }
+            // else if (currentGesture.Equals("OPEN"))
+            // {
+            //     if (lastGesture != "OPEN")
+            //     {
+            //         lastGesture = "OPEN";
+            //         if (sword) sword.Grab();
+            //     }
 
-            }
+            // }
+            // else if (currentGesture.Equals("THUMB"))
+            // {
+            //     if (lastGesture != "THUMB")
+            //     {
+            //         lastGesture = "THUMB";
+            //         if (sword) sword.TurnOnOff();
+            //     }
 
-            yield return new WaitForSeconds(.4F);
+            // }
+            //  else if (currentGesture.Equals("GRAB"))
+            // {
+            //     if (lastGesture != "GRAB")
+            //     {
+            //         lastGesture = "GRAB";
+            //         if (sword) sword.TurnOnOff();
+            //     }
+
+            // }
+            //  else if (currentGesture.Equals("COOL"))
+            // {
+            //     if (lastGesture != "COOL")
+            //     {
+            //         lastGesture = "COOL";
+            //         if (sword) sword.TurnOnOff();
+            //     }
+
+            // }
+
+			stateMachine = currentGesture;
+
+        	
+            yield return new WaitForSeconds(.2F);
         }
     }
 

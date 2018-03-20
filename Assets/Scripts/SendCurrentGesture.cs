@@ -80,7 +80,7 @@ public class SendCurrentGesture : MonoBehaviour {
 
                         float theta = Mathf.Acos(cosTheta);
 
-                        if(finger==0)  Debug.Log("theta  " + theta);
+                        // if(finger==0)  Debug.Log("theta  " + theta);
 
                       
 
