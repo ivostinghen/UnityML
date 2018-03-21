@@ -345,9 +345,10 @@ public class SaveGesture : MonoBehaviour
 
     IEnumerator RecordHandPos()
     {
-        for (int i = samples; i >= 0; i--)
+        for (int i = 0; i < samples; i++)
         {
             GetValues();
+            Debug.Log(i + "");
             yield return new WaitForSeconds(recordRateTime);
         }
         Debug.Log(gestureName + " finished Recording.");
@@ -419,7 +420,7 @@ public class SaveGesture : MonoBehaviour
 
                 float theta = Mathf.Acos(cosTheta);
 
-                if(finger==0)  Debug.Log("theta  " + theta);
+                // if(finger==0)  Debug.Log("theta  " + theta);
 
               
 

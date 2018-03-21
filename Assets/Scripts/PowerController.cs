@@ -15,14 +15,17 @@ public class PowerController : MonoBehaviour
 
     string stateMachine = "";
 
-    public GameObject enemy;
+    GameObject enemy;
     public GameObject thunderPower, flamesPower;
-
+    public Transform lightningEnd;
     Coroutine curPower;
 
     IEnumerator ActivateThunder(){
     	Debug.Log("*** THUNDER POWER  ***");
 
+        enemy = GameObject.Find("Enemy");
+        lightningEnd.transform.parent = enemy.transform.GetChild(0).transform;
+        lightningEnd.transform.localPosition = Vector3.zero;
     	Camera.main.GetComponent<PerlinShake>().test = true;
     	thunderPower.SetActive(true);
     	enemy.GetComponent<Rigidbody>().isKinematic = false;
@@ -33,7 +36,7 @@ public class PowerController : MonoBehaviour
 			yield return new WaitForSeconds(.3F);
 
     	}
-    	
+    	enemy.name = "TRASH";
     	thunderPower.SetActive(false);
     	curPower = null;
     }
@@ -61,14 +64,14 @@ public class PowerController : MonoBehaviour
         
         while (true)
         {
-
-        	Debug.Log(stateMachine + "			" + currentGesture);
-        	if(stateMachine.Equals("TWOJUTSU") && currentGesture.Equals("LOVEJUTSU")){
+// 
+        	// Debug.Log(stateMachine + "			" + currentGesture);
+        	if(stateMachine.Equals("TWO") && currentGesture.Equals("LOVE")){
         			Debug.Log("AAAAAAAAAAA");
         		if(curPower==null)curPower=StartCoroutine(ActivateThunder());
 
         	}
-        	else if(stateMachine.Equals("FOURJUTSU") && currentGesture.Equals("COOL")){
+        	else if(stateMachine.Equals("FOUR") && currentGesture.Equals("COOL")){
 
         		if(curPower==null)curPower=StartCoroutine(ActivateFlames());
 
