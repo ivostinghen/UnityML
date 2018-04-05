@@ -348,7 +348,7 @@ public class SaveGesture : MonoBehaviour
         for (int i = 0; i < samples; i++)
         {
             GetValues();
-            Debug.Log(i + "");
+            // Debug.Log(i + "");
             yield return new WaitForSeconds(recordRateTime);
         }
         Debug.Log(gestureName + " finished Recording.");
@@ -396,7 +396,7 @@ public class SaveGesture : MonoBehaviour
 
         //add rotation normalized
 
-        //c^2 = a^2 + b^2 – 2·a·b·cosα
+        
 
         for (int finger = 0; finger < 4; finger++)  //5 fingers
         {
@@ -409,17 +409,31 @@ public class SaveGesture : MonoBehaviour
                 float b = Vector3.Distance(rightHand.transform.GetChild(finger).GetChild(2).transform.position, rightPalm.transform.position);
 
                 
-
+                 // a=6;b=5;c=7;
 
 
 
                 float cosTheta= 0;
                
+				//c^2 = a^2 + b^2 – 2·a·b·cosα
+				// = a^2 + b^2 – 2·a·b·cosα - c^2
+				//2·a·b·cosα  = a^2 + b^2 - c^2
+				//cosα  = a^2 + b^2 - c^2 / 2·a·b
+				
+			
 
                 cosTheta = ((a * a) + (b * b) - (c*c)) / (2 * a * b);
 
-                float theta = Mathf.Acos(cosTheta);
+                // theta = Mathf.Acos((cosTheta * Mathf.PI) / 180);
+                 // cosTheta = Mathf.Acos((theta * Mathf.PI) / 180);
+               
+                
+ 				float theta  = Mathf.Acos(cosTheta);
+ 				theta = theta * Mathf.Rad2Deg;
 
+                if(finger==0) print(theta);
+               
+               
                 // if(finger==0)  Debug.Log("theta  " + theta);
 
               

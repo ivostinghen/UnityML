@@ -262,6 +262,9 @@
     <Reference Include="UnityEditor.Android.Extensions">
       <HintPath>Library\UnityAssemblies\UnityEditor.Android.Extensions.dll</HintPath>
     </Reference>
+    <Reference Include="UnityEditor.WSA.Extensions">
+      <HintPath>Library\UnityAssemblies\UnityEditor.WSA.Extensions.dll</HintPath>
+    </Reference>
     <Reference Include="UnityEditor.WebGL.Extensions">
       <HintPath>Library\UnityAssemblies\UnityEditor.WebGL.Extensions.dll</HintPath>
     </Reference>
@@ -564,6 +567,7 @@
     <Compile Include="Assets\Scripts\SaveGesture.cs" />
     <Compile Include="Assets\Scripts\SendCurrentGesture.cs" />
     <Compile Include="Assets\Scripts\Sword.cs" />
+    <Compile Include="Assets\SimpleSkeletonFree\Script\Character\PlayerController.cs" />
     <Compile Include="Assets\SphericalPosition.cs" />
   </ItemGroup>
   <ItemGroup>

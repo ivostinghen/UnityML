@@ -71,6 +71,7 @@ C:/Program Files/UnityNew/Editor/Data/PlaybackEngines/VuforiaSupport/Managed/Edi
 C:/Program Files/UnityNew/Editor/Data/PlaybackEngines/VuforiaSupport/Managed/Runtime/Vuforia.UnityExtensions.dll
 C:/Program Files/UnityNew/Editor/Data/Managed/UnityEditor.Graphs.dll
 C:/Program Files/UnityNew/Editor/Data/PlaybackEngines/AndroidPlayer/UnityEditor.Android.Extensions.dll
+C:/Program Files/UnityNew/Editor/Data/PlaybackEngines/MetroSupport/UnityEditor.WSA.Extensions.dll
 C:/Program Files/UnityNew/Editor/Data/PlaybackEngines/WebGLSupport/UnityEditor.WebGL.Extensions.dll
 C:/Program Files/UnityNew/Editor/Data/PlaybackEngines/windowsstandalonesupport/UnityEditor.WindowsStandalone.Extensions.dll
 C:/Program Files (x86)/Microsoft Visual Studio Tools for Unity/15.0/Editor/SyntaxTree.VisualStudio.Unity.Bridge.dll

@@ -7,7 +7,7 @@ using UnityEngine;
 public class SendCurrentGesture : MonoBehaviour {
 
 	string fileUnity = @"C:\Users\ivoal\git\pythonML\communication\unity.txt";
-    string filePython = @"C:\Users\ivoal\git\pythonML\communication\python.txt";
+    
 
     public Transform rightHand,leftHand;
     int cont = 0;
