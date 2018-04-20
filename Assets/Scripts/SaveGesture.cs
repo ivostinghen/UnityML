@@ -16,9 +16,10 @@ public class SaveGesture : MonoBehaviour
     string rawDataTemp;
     //public float limitRecordTime;
     public float recordRateTime;
-    
+
     //string path = @"C:\Users\ivoal\Desktop\gestures.txt";
 
+    public Transform[] fingers;
     public int samples;
 
  float max;
@@ -73,7 +74,9 @@ public class SaveGesture : MonoBehaviour
         // rawDataTemp[14] = "pPINKY_BONE3_Z";
 
 
-        rawDataTemp = "THUMB_INDEX_ANGLE,THUMB_DIST,INDEX_MIDDLE_ANGLE,INDEX_DIST,MIDDLE_RING_ANGLE,MIDDLE_DIST,RING_PINKY_ANGLE,RING_DIST,PINKY_DIST,target";
+        //rawDataTemp = "THUMB_INDEX_ANGLE,THUMB_DIST,INDEX_MIDDLE_ANGLE,INDEX_DIST,MIDDLE_RING_ANGLE,MIDDLE_DIST,RING_PINKY_ANGLE,RING_DIST,PINKY_DIST,target";
+        rawDataTemp = "THUMB_POS_X,THUMB_POS_Y,THUMB_POS_Z,INDEX_POS_X,INDEX_POS_Y,INDEX_POS_Z,MIDDLE_POS_X,MIDDLE_POS_Y,MIDDLE_POS_Z,RING_POS_X,RING_POS_Y,RING_POS_Z,PINKY_POS_X,PINKY_POS_Y,PINKY_POS_Z";
+        // rawDataTemp = "THUMB_INDEX_ANGLE,INDEX_MIDDLE_ANGLE,MIDDLE_RING_ANGLE,RING_PINKY_ANGLE,target";
 
 
         string filePath = getPath();
@@ -367,14 +370,14 @@ public class SaveGesture : MonoBehaviour
         //ALREADY TESTED
         //////// float normalDist = Vector3.Distance(rightPalm.transform.position, rightHand.transform.GetChild(2).GetChild(2).position); // dedo medio
         float normalDist = 0.1257631F; // the maximum distance betwween middle finger and the hand middle point.
-        ////////
-        
+                                       ////////
+
         //right hand
         //var ax = rightHand.transform.GetChild(2).GetChild(2).position.x - rightPalm.transform.position.x ;
         //var ay = rightHand.transform.GetChild(2).GetChild(2).position.y - rightPalm.transform.position.y ; // z and y has a fake impression that are inverted on leap motion, but is only in editor, or local position, global is fine
         //var az = rightHand.transform.GetChild(2).GetChild(2).position.z - (rightPalm.transform.position.z/* - 0.071F*/)  ;
         //float normalDist = Mathf.Sqrt((ax * ax) + (ay * ay) + (az * az)) ;
-       
+
         //Debug.Log((rightHand.transform.GetChild(2).GetChild(2).position.y - rightPalm.transform.position.y) / normalDist);
         // for (int finger = 0; finger < 5; finger++)  //5 fingers
         // {
@@ -396,60 +399,68 @@ public class SaveGesture : MonoBehaviour
 
         //add rotation normalized
 
-        
 
-        for (int finger = 0; finger < 4; finger++)  //5 fingers
+
+        // for (int finger = 0; finger < 4; finger++)  //5 fingers
+        // {
+
+        //    {
+
+        //        float c = Vector3.Distance(fingers[finger].position, fingers[finger + 1].position);
+        //        float a = Vector3.Distance(fingers[finger + 1].position, rightPalm.transform.position);
+        //        float b = Vector3.Distance(fingers[finger].position, rightPalm.transform.position);
+
+
+        //        float cosTheta = 0;
+
+        //        //c^2 = a^2 + b^2 – 2·a·b·cosα
+        //        // = a^2 + b^2 – 2·a·b·cosα - c^2
+        //        //2·a·b·cosα  = a^2 + b^2 - c^2
+        //        //cosα  = a^2 + b^2 - c^2 / 2·a·b
+
+        //        cosTheta = ((a * a) + (b * b) - (c * c)) / (2 * a * b);
+
+        //        float theta = Mathf.Acos(cosTheta);
+        //        theta = theta * Mathf.Rad2Deg;
+
+        //        // if (finger == 0) print(theta);
+
+
+        //        // if(finger==0)  Debug.Log("theta  " + theta);
+
+
+
+        //        //if (finger == 0)
+        //        //{
+        //        //    rawDataTemp = rawDataTemp + c + ",";
+        //        //}
+        //        rawDataTemp = rawDataTemp + theta + ",";
+
+
+        //        //if (finger == 3)
+        //        //{
+        //        //    rawDataTemp = rawDataTemp + a + ",";
+        //        //}
+
+
+        //        //y++;
+
+        //    }
+        // }
+
+        //POSIÇÕES DOS DEDOS
+        for (int finger = 0; finger < 5; finger++)  //5 fingers
         {
-          
-            int bone = 2;
-            {
 
-                float c = Vector3.Distance(rightHand.transform.GetChild(finger).GetChild(2).transform.position, rightHand.transform.GetChild(finger + 1).GetChild(2).transform.position);
-                float a = Vector3.Distance(rightHand.transform.GetChild(finger+1).GetChild(2).transform.position, rightPalm.transform.position);
-                float b = Vector3.Distance(rightHand.transform.GetChild(finger).GetChild(2).transform.position, rightPalm.transform.position);
+            
 
-                
-                 // a=6;b=5;c=7;
+           Vector3 localPos =  fingers[finger].transform.position - rightPalm.transform.position;
+           for (int i = 0; i < 3; i++)
+           {
 
+               rawDataTemp = rawDataTemp + localPos[i]  + ",";
+           }
 
-
-                float cosTheta= 0;
-               
-				//c^2 = a^2 + b^2 – 2·a·b·cosα
-				// = a^2 + b^2 – 2·a·b·cosα - c^2
-				//2·a·b·cosα  = a^2 + b^2 - c^2
-				//cosα  = a^2 + b^2 - c^2 / 2·a·b
-				
-			
-
-                cosTheta = ((a * a) + (b * b) - (c*c)) / (2 * a * b);
-
-                // theta = Mathf.Acos((cosTheta * Mathf.PI) / 180);
-                 // cosTheta = Mathf.Acos((theta * Mathf.PI) / 180);
-               
-                
- 				float theta  = Mathf.Acos(cosTheta);
- 				theta = theta * Mathf.Rad2Deg;
-
-                if(finger==0) print(theta);
-               
-               
-                // if(finger==0)  Debug.Log("theta  " + theta);
-
-              
-
-                rawDataTemp = rawDataTemp  + theta + ",";
-
-                rawDataTemp = rawDataTemp  + b + ",";
-
-                if(finger==3){
-                    rawDataTemp = rawDataTemp  + a + ",";
-                }
-
-
-                y++;
-                 
-            }
         }
 
 
@@ -477,7 +488,7 @@ public class SaveGesture : MonoBehaviour
         //}
 
 
-        rawDataTemp= rawDataTemp + gestureName;
+        rawDataTemp = rawDataTemp + gestureName;
         // rowData.Add(rawDataTemp);
 
         // string[][] output = new string[rowData.Count][];

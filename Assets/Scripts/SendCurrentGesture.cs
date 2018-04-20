@@ -14,8 +14,8 @@ public class SendCurrentGesture : MonoBehaviour {
     String line = "";
     String lastAcess = "";
     public Transform rightPalm;
-    
-    
+    public Transform[] fingers;
+   
     IEnumerator Start ()
     {
         while (true)
@@ -32,72 +32,105 @@ public class SendCurrentGesture : MonoBehaviour {
                //ALREADY TESTED
                 // float normalDist = Vector3.Distance(rightPalm.transform.position, rightHand.transform.GetChild(2).GetChild(2).position); // dedo medio
                 float normalDist = 0.1257631F; // the maximum distance betwween middle finger and the hand middle point.
-                ////////
-            
+                                               ////////
 
 
 
-                // //right hand position
-                // for (int finger = 0; finger < 5; finger++)  //5 fingers
-                // {
-                //     //for (int bone = 0; bone < 3; bone++)
-                //     int bone = 2;
-                //     {
-                //         //raw = raw + "(";
-                //         for (int axis = 0; axis < 3; axis++)    //3 axis (X,y,z) position.
-                //         {
 
-                //             //if(axis==2)raw = raw + (rightHand.transform.GetChild(finger).GetChild(bone).position[axis] - rightPalm.transform.position[axis]) + "),";
-                //             /*else */
-                //             raw= raw + ((rightHand.transform.GetChild(finger).GetChild(bone).position[axis] - rightPalm.transform.position[axis]) / normalDist + ",");
-
-                //             //y++;
-                //         }
-                        
-                //     }
                 // }
 
                 //rotation angles
-                 for (int finger = 0; finger < 4; finger++)  //5 fingers
+                // for (int finger = 0; finger < 4; finger++)  //5 fingers
+                //     {
+
+                //         {
+
+                //             float c = Vector3.Distance(fingers[finger].position, fingers[finger + 1].position);
+                //             float a = Vector3.Distance(fingers[finger + 1].position, rightPalm.transform.position);
+                //             float b = Vector3.Distance(fingers[finger].position, rightPalm.transform.position);
+
+
+
+
+
+
+
+                //             float cosTheta = 0;
+
+                //             //c^2 = a^2 + b^2 – 2·a·b·cosα
+                //             // = a^2 + b^2 – 2·a·b·cosα - c^2
+                //             //2·a·b·cosα  = a^2 + b^2 - c^2
+                //             //cosα  = a^2 + b^2 - c^2 / 2·a·b
+
+
+                //             cosTheta = ((a * a) + (b * b) - (c * c)) / (2 * a * b);
+
+
+
+                //             float theta = Mathf.Acos(cosTheta);
+                //             theta = theta * Mathf.Rad2Deg;
+
+                //             // if(finger==0)  Debug.Log("theta  " + theta);
+                //             //if (finger == 0) print(theta);
+
+
+                //             //if (finger == 0)
+                //             //{
+                //             //    rawDataTemp = rawDataTemp + c + ",";
+                //             //}
+                //             rawDataTemp = rawDataTemp + theta + ",";
+
+
+
+                //             //if (finger == 3)
+                //             //{
+                //             //    rawDataTemp = rawDataTemp + a + ",";
+                //             //}
+
+
+                //             // y++;
+
+                //         }
+                //     }
+
+                for (int finger = 0; finger < 5; finger++)  //5 fingers
                 {
-                  
-                    int bone = 2;
-                    {
 
-                        float c = Vector3.Distance(rightHand.transform.GetChild(finger).GetChild(2).transform.position, rightHand.transform.GetChild(finger + 1).GetChild(2).transform.position);
-                        float a = Vector3.Distance(rightHand.transform.GetChild(finger+1).GetChild(2).transform.position, rightPalm.transform.position);
-                        float b = Vector3.Distance(rightHand.transform.GetChild(finger).GetChild(2).transform.position, rightPalm.transform.position);
+                   {
 
-                        
+                       //print(finger);
+
+
+                       // if(finger==0)  Debug.Log("theta  " + theta);
 
 
 
+                       //if (finger == 0)
+                       //{
+                       //    rawDataTemp = rawDataTemp + c + ",";
+                       //}
 
-                        float cosTheta= 0;
-                       
+                       Vector3 localPos =  fingers[finger].transform.position - rightPalm.transform.position;
+                       for (int i = 0; i < 3; i++)
+                       {
 
-                        cosTheta = ((a * a) + (b * b) - (c*c)) / (2 * a * b);
+                           rawDataTemp = rawDataTemp + localPos[i]  + ",";
 
-                        float theta = Mathf.Acos(cosTheta);
-
-                        // if(finger==0)  Debug.Log("theta  " + theta);
-
-                      
-
-                        rawDataTemp = rawDataTemp  + theta + ",";
-
-                        rawDataTemp = rawDataTemp  + b + ",";
-
-                        if(finger==3){
-                            rawDataTemp = rawDataTemp  + a + ",";
-                        }
-
-
-                        // y++;
                          
-                    }
-        }
 
+                       }
+
+
+                       //if (finger == 3)
+                       //{
+                       //    rawDataTemp = rawDataTemp + a + ",";
+                       //}
+
+
+                       //y++;
+
+                   }
+                }
 
 
 
