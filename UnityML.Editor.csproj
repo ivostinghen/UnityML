@@ -298,9 +298,6 @@
     <Reference Include="LeapCSharp.NET3.5">
       <HintPath>Assets\LeapMotion\Core\Plugins\LeapCSharp.NET3.5.dll</HintPath>
     </Reference>
-    <Reference Include="Newtonsoft.Json">
-      <HintPath>Assets\ml-agents-master\unity-environment\Assets\ML-Agents\Plugins\JSON\Newtonsoft.Json.dll</HintPath>
-    </Reference>
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="unityML.csproj">
@@ -344,7 +341,6 @@
     <Compile Include="Assets\LeapMotion\Core\Scripts\VR\Editor\EyeTypeEditor.cs" />
     <Compile Include="Assets\LeapMotion\Core\Scripts\VR\Editor\LeapTemporalWarpingEditor.cs" />
     <Compile Include="Assets\LightningBolt\Editor\LightningBoltEditor.cs" />
-    <Compile Include="Assets\ml-agents-master\unity-environment\Assets\ML-Agents\Editor\BrainEditor.cs" />
     <Compile Include="Assets\PostProcessing\Editor\Attributes\PostProcessingModelEditorAttribute.cs" />
     <Compile Include="Assets\PostProcessing\Editor\Models\AmbientOcclusionModelEditor.cs" />
     <Compile Include="Assets\PostProcessing\Editor\Models\AntialiasingModelEditor.cs" />

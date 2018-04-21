@@ -7,7 +7,7 @@ public class PowerController : MonoBehaviour
 
     public GameObject fireball;
 
-    public string currentGesture;
+    public string currentGesture = " ";
 
     public Transform rightPalm;
     public Sword sword;
@@ -20,25 +20,38 @@ public class PowerController : MonoBehaviour
     public Transform lightningEnd;
     Coroutine curPower;
 
+    //DEBUG PC
+    // public void Update(){
+    //     if(Input.GetMouseButtonDown(0)){
+
+    //     StartCoroutine(ActivateThunder());
+    //     }
+    // }
     IEnumerator ActivateThunder(){
     	Debug.Log("*** THUNDER POWER  ***");
 
         enemy = GameObject.Find("Enemy");
-        lightningEnd.transform.parent = enemy.transform.GetChild(0).transform;
-        lightningEnd.transform.localPosition = Vector3.zero;
-    	Camera.main.GetComponent<PerlinShake>().test = true;
-    	thunderPower.SetActive(true);
-    	enemy.GetComponent<Rigidbody>().isKinematic = false;
-    	enemy.GetComponent<Rigidbody>().AddForce(Vector3.forward * 10000);
+        if(enemy!=null){
 
-    	// while(currentGesture.Equals("LOVEJUTSU"))
-    	{
-			yield return new WaitForSeconds(.3F);
 
-    	}
-    	enemy.name = "TRASH";
-    	thunderPower.SetActive(false);
-    	curPower = null;
+            lightningEnd.transform.parent = enemy.transform.GetChild(0).transform;
+            // lightningEnd.transform.parent = enemy.transform;
+            lightningEnd.transform.localPosition = Vector3.zero;
+        	Camera.main.GetComponent<PerlinShake>().test = true;
+        	thunderPower.SetActive(true);
+        	enemy.GetComponent<Rigidbody>().isKinematic = false;
+        	enemy.GetComponent<Rigidbody>().AddForce(Vector3.forward * 10000);
+
+        	// while(currentGesture.Equals("LOVEJUTSU"))
+        	{
+        		yield return new WaitForSeconds(.3F);
+
+        	}
+        	enemy.name = "TRASH";
+        	thunderPower.SetActive(false);
+        	curPower = null;
+         }
+         yield return null;
     }
 
      IEnumerator ActivateFlames(){
@@ -76,53 +89,6 @@ public class PowerController : MonoBehaviour
         		if(curPower==null)curPower=StartCoroutine(ActivateFlames());
 
         	}
-
-            // if (currentGesture.Equals("CLOSE"))
-            // {
-            //     if (lastGesture != "CLOSE")
-            //     {
-            //         lastGesture = "CLOSE";
-            //         if (sword) sword.Fall();
-
-            //     }
-
-            // }
-            // else if (currentGesture.Equals("OPEN"))
-            // {
-            //     if (lastGesture != "OPEN")
-            //     {
-            //         lastGesture = "OPEN";
-            //         if (sword) sword.Grab();
-            //     }
-
-            // }
-            // else if (currentGesture.Equals("THUMB"))
-            // {
-            //     if (lastGesture != "THUMB")
-            //     {
-            //         lastGesture = "THUMB";
-            //         if (sword) sword.TurnOnOff();
-            //     }
-
-            // }
-            //  else if (currentGesture.Equals("GRAB"))
-            // {
-            //     if (lastGesture != "GRAB")
-            //     {
-            //         lastGesture = "GRAB";
-            //         if (sword) sword.TurnOnOff();
-            //     }
-
-            // }
-            //  else if (currentGesture.Equals("COOL"))
-            // {
-            //     if (lastGesture != "COOL")
-            //     {
-            //         lastGesture = "COOL";
-            //         if (sword) sword.TurnOnOff();
-            //     }
-
-            // }
 
 			stateMachine = currentGesture;
 

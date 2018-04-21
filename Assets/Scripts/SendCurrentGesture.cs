@@ -15,9 +15,10 @@ public class SendCurrentGesture : MonoBehaviour {
     String lastAcess = "";
     public Transform rightPalm;
     public Transform[] fingers;
-   
+    Socket socket;
     IEnumerator Start ()
     {
+        socket = GetComponent<Socket>();
         while (true)
         {
             //string temp = File.GetLastAccessTime(fileUnity).ToShortTimeString().ToString();
@@ -159,8 +160,9 @@ public class SendCurrentGesture : MonoBehaviour {
 
                 rawDataTemp = rawDataTemp.Substring(0, rawDataTemp.Length - 1);
 
+                socket.currentInput = rawDataTemp;
                 //Debug.Log(positions);
-                File.WriteAllText(fileUnity, rawDataTemp);
+                // File.WriteAllText(fileUnity, rawDataTemp);
                 //print("changed!");
             }
 
