@@ -1,4 +1,4 @@
 sceneSetups:
-- path: Assets/TCC-demo.unity
+- path: Assets/Scenes/SBGames.unity
   isLoaded: 1
   isActive: 1

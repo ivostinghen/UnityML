@@ -74,8 +74,8 @@ public PowerController powerController;
         byte[] buffer = new byte[client.ReceiveBufferSize];
         int bytesRead = nwStream.Read(buffer, 0, buffer.Length);
         dataReceived = Encoding.UTF8.GetString(buffer, 0, bytesRead);
-        print(dataReceived);
-       
+        // print(dataReceived);
+       // 
 	    
 
     }
