@@ -34,17 +34,16 @@ public class PowerController : MonoBehaviour
         if(enemy!=null){
 
 
-            lightningEnd.transform.parent = enemy.transform.GetChild(0).transform;
-            // lightningEnd.transform.parent = enemy.transform;
-            lightningEnd.transform.localPosition = Vector3.zero;
+            lightningEnd.transform.parent = enemy.transform;
+            lightningEnd.transform.localPosition = new Vector3(0,4,0);
         	Camera.main.GetComponent<PerlinShake>().test = true;
         	thunderPower.SetActive(true);
-        	enemy.GetComponent<Rigidbody>().isKinematic = false;
-        	enemy.GetComponent<Rigidbody>().AddForce(Vector3.forward * 10000);
+        	enemy.GetComponent<Rigidbody>().useGravity = true;
+        	enemy.GetComponent<Rigidbody>().AddForce(-Vector3.forward * 100);
 
         	// while(currentGesture.Equals("LOVEJUTSU"))
         	{
-        		yield return new WaitForSeconds(.3F);
+        		yield return new WaitForSeconds(.5F);
 
         	}
         	enemy.name = "TRASH";
@@ -80,7 +79,7 @@ public class PowerController : MonoBehaviour
 // 
         	// Debug.Log(stateMachine + "			" + currentGesture);
         	if(stateMachine.Equals("TWO") && currentGesture.Equals("LOVE")){
-        			Debug.Log("AAAAAAAAAAA");
+        			// Debug.Log("AAAAAAAAAAA");
         		if(curPower==null)curPower=StartCoroutine(ActivateThunder());
 
         	}
