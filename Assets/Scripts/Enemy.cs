@@ -7,16 +7,18 @@ public class Enemy : MonoBehaviour {
     Transform character;
     public float speed;
     Rigidbody rb;
+    Animator anim;
 	void Start () {
+        anim = GetComponentInChildren<Animator>();
         rb = GetComponent<Rigidbody>();
         character = GameObject.Find("HandModels").transform ;
         transform.LookAt(character);
     }
 	
-	// Update is called once per frame
-	void LateUpdate () {
-        
-        transform.Translate(Vector3.forward * Time.deltaTime * speed);
+	void Update () {
+        rb.velocity = transform.forward * Time.deltaTime * speed;
+        anim.SetFloat("speedh",rb.velocity.x);
+        anim.SetFloat("speedv",rb.velocity.z);
 	}
 
     private void OnCollisionEnter(Collision col)
