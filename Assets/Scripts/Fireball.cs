@@ -11,8 +11,9 @@ public class Fireball : MonoBehaviour {
     void LateUpdate()
     {
 
-        transform.position += -transform.up * fireSpeed * Time.deltaTime;
+        // transform.position += -transform.up * fireSpeed * Time.deltaTime;
        
+        transform.position += transform.forward * fireSpeed * Time.deltaTime;
 
         time += Time.deltaTime;
         if (time > 4) Destroy(gameObject);

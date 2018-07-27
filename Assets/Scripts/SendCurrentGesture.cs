@@ -16,11 +16,19 @@ public class SendCurrentGesture : MonoBehaviour {
     public Transform rightPalm;
     public Transform[] fingers;
     Socket socket;
+    public float THUMB_INDEX_ANGLE;
+
+     void OnGUI()
+    {
+        // GUI.Box(new Rect(0, 0, Screen.width, Screen.height), THUMB_INDEX_ANGLE+"");
+    }
+
     IEnumerator Start ()
     {
         socket = GetComponent<Socket>();
         while (true)
         {
+
             //string temp = File.GetLastAccessTime(fileUnity).ToShortTimeString().ToString();
             //if (temp != lastAcess)
             {
@@ -82,8 +90,10 @@ public class SendCurrentGesture : MonoBehaviour {
                             float b = Vector3.Distance(fingers[finger].position, rightPalm.transform.position);
                             float cosTheta = 0;
                             cosTheta = ((a * a) + (b * b) - (c * c)) / (2 * a * b);
+                            
                             float theta = Mathf.Acos(cosTheta);
                             theta = theta * Mathf.Rad2Deg;
+                            if(finger==0)THUMB_INDEX_ANGLE=theta;
                             rawDataTemp = rawDataTemp + theta + ",";
 
                         }

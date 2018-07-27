@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class PowerController : MonoBehaviour
 {
-
+    public SkinnedMeshRenderer handRenderer;
     public GameObject fireball;
 
     public string currentGesture = " ";
@@ -12,50 +12,74 @@ public class PowerController : MonoBehaviour
     public Transform rightPalm;
     public Sword sword;
     string lastGesture;
-
     string stateMachine = "";
-
     GameObject enemy;
-    public GameObject thunderPower, flamesPower;
+    public GameObject thunderPower, flamesPower, plasmaPower,gun;
     public Transform lightningEnd;
     Coroutine curPower;
 
-    //DEBUG PC
-    // public void Update(){
-    //     if(Input.GetMouseButtonDown(0)){
 
-    //     StartCoroutine(ActivateThunder());
-    //     }
-    // }
+    IEnumerator GunResize(string value){
+        if(value.Equals("bigger")){
+            for(float i=.25f;i<1f;i+=0.15f){
+                gun.transform.localScale = new Vector3(i,i,i);
+                yield return new WaitForSeconds(0.02f);
+            }
+        }
+        else{
+            for(float i=1F;i>.25f;i-=0.15f){
+                gun.transform.localScale = new Vector3(i,i,i);
+                yield return new WaitForSeconds(0.01f);
+            }
+        }
+    }
+
+   
+    IEnumerator ActivatePlasmaBall(){
+        gun.SetActive(true);
+      
+        StartCoroutine(GunResize("bigger"));
+        yield return new WaitForSeconds(.5F);
+        while(true)
+        {
+            GameObject plasma = Instantiate(plasmaPower,gun.transform.position,gun.transform.rotation) as GameObject;
+            yield return new WaitForSeconds(.5F);
+            if(!currentGesture.Equals("FIRE")){
+                break;
+            }
+        }
+        StartCoroutine(GunResize("smaller"));
+        yield return new WaitForSeconds(.2F);
+        gun.SetActive(false);
+        curPower = null;
+    }
+   
     IEnumerator ActivateThunder(){
-    	Debug.Log("*** THUNDER POWER  ***");
-
-        enemy = GameObject.Find("Enemy");
+        try{
+        	enemy = GameObject.Find("Enemy");
+        }
+        catch{
+        	print("n achou");
+        	curPower = null;
+        }
         if(enemy!=null){
-
-
             lightningEnd.transform.parent = enemy.transform;
-            lightningEnd.transform.localPosition = new Vector3(0,4,0);
+            lightningEnd.transform.position = enemy.transform.position;
         	Camera.main.GetComponent<PerlinShake>().test = true;
         	thunderPower.SetActive(true);
-        	enemy.GetComponent<Rigidbody>().useGravity = true;
+        	enemy.GetComponent<Rigidbody>().useGravity = true;        	
+			enemy.GetComponent<Rigidbody>().isKinematic = false;
         	enemy.GetComponent<Rigidbody>().AddForce(-Vector3.forward * 100);
-
-        	// while(currentGesture.Equals("LOVEJUTSU"))
-        	{
-        		yield return new WaitForSeconds(.5F);
-
-        	}
+            yield return new WaitForSeconds(.5F);
         	enemy.name = "TRASH";
+        	lightningEnd.transform.parent = null;
         	thunderPower.SetActive(false);
-        	curPower = null;
          }
+         curPower = null;
          yield return null;
     }
 
      IEnumerator ActivateFlames(){
-    	Debug.Log("*** Flames POWER  ***");
-
     	// Camera.main.GetComponent<PerlinShake>().test = true;
     	flamesPower.SetActive(true);
     	// enemy.GetComponent<Rigidbody>().isKinematic = false;
@@ -64,45 +88,42 @@ public class PowerController : MonoBehaviour
     	while(currentGesture.Equals("COOL"))
     	{
 			yield return new WaitForSeconds(.3F);
-
     	}
     	
     	flamesPower.SetActive(false);
     	curPower = null;
     }
 
+ 	public void Update(){
+        if(Input.GetKeyDown("a"))
+        {
+            StartCoroutine(ActivatePlasmaBall());
+        }
+    }
     IEnumerator Start()
     {
         
         while (true)
         {
-// 
-        	// Debug.Log(stateMachine + "			" + currentGesture);
-        	if(stateMachine.Equals("TWO") && currentGesture.Equals("LOVE")){
-        			// Debug.Log("AAAAAAAAAAA");
+            if(stateMachine.Equals("THUMB") && currentGesture.Equals("FIRE"))
+            {
+                Debug.Log("FIRE");
+                if(curPower==null)curPower=StartCoroutine(ActivatePlasmaBall());
+            }
+        	else if(stateMachine.Equals("TWO") && currentGesture.Equals("LOVE")){
+        		Debug.Log("THUNDER");
         		if(curPower==null)curPower=StartCoroutine(ActivateThunder());
-
         	}
         	else if(stateMachine.Equals("FOUR") && currentGesture.Equals("COOL")){
-
-        		if(curPower==null)curPower=StartCoroutine(ActivateFlames());
-
-        	}
-
+        		Debug.Log("FLAMES");
+                if(curPower==null)curPower=StartCoroutine(ActivateFlames());
+            }
+            // else if(stateMachine.Equals("ITALIAN") && currentGesture.Equals("HANG_LOOSE")){
+            //     if(curPower==null)curPower=StartCoroutine(ActivatePlasmaBar());
+            // }
 			stateMachine = currentGesture;
-
-        	
             yield return new WaitForSeconds(.2F);
         }
     }
 
-
-    public void SpawnFireBall(Transform spawnPoint)
-    {
-        print("FIRE");
-        GameObject power = Instantiate(fireball, spawnPoint.position, spawnPoint.rotation);
-        //fireball.GetComponent<FireBall>().target = target;
-        //fireball.gameObject.SetActive(true);
-
-    }
 }
