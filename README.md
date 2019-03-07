@@ -23,5 +23,7 @@
     <h5> Receive prediction in real-time from python side classifier
     <h5>- OBS: You must have pre-trained your python classifier
 
+
+<img src="git-gifs/gameplay.gif" width="600">
   
 
