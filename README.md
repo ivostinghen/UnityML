@@ -15,7 +15,7 @@
 
 - Generate a hand gesture database
     <h5>- Required for python classifier in Final Paper - PartII - Python Side - MachineLearning. 
-    <h5> &nbsp   Link of Part II : https://github.com/ivostinghen/PythonML
+    <h6> &nbsp   Link of Part II : https://github.com/ivostinghen/PythonML
 
 
 - Receive real-time hand-gestures preditions: 
