@@ -23,8 +23,8 @@
     <h5> Receive prediction in real-time from python side classifier
     <h5>- OBS: You must have pre-trained your python classifier
 
-
 <h4>Real-time gesture prediction gameplay in Unity Engine using Leap Motion Sensor
-<img src="git-gifs/gameplay.gif" width="600">
-  
+   <h3> Youtube Link: https://www.youtube.com/watch?v=tOIR6i9I7ws
+<img src="git-gifs/gameplay.gif" width="500">
+
 
